@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bình Giữ Nhiệt Inox 316 - Vòng Tròn Xanh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css"> 
+    <style>
+        :root {
+            --primary-green: #3B5F2A;
+            --soft-green: #E6EDDF;
+            --text-dark: #2D2D2D;
+            --bg-cream: #FDFDFB;
+            --white: #FFFFFF;
+        }
+
+        /* --- BASIC SETUP --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+            text-align: center;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif !important; }
+
+        /* --- HERO SECTION --- */
+        .product-hero {
+            padding: 20px 20px;
+            background: linear-gradient(to bottom, var(--soft-green), var(--bg-cream));
+        }
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .badge-premium {
+            display: inline-block;
+            padding: 5px 20px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .hero-title { font-size: clamp(2.5rem, 6vw, 4rem); color: var(--primary-green); margin-bottom: 20px; }
+        .hero-desc { max-width: 600px; margin: 0 auto 20px; color: #555; }
+
+        /* --- FEATURES (Chất liệu Inox 316) --- */
+        .feature-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid rgba(59, 95, 42, 0.1);
+        }
+        .feature-card i { font-size: 2rem; display: block; margin-bottom: 15px; }
+
+        /* --- COLLECTION GRID (5 Hoạ tiết) --- */
+        .collection-section { padding: 30px 20px; }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .pattern-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.4s ease;
+            position: relative;
+        }
+        .pattern-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .img-box { width: 100%; aspect-ratio: 9/16; overflow: hidden; background: #eee; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .pattern-card:hover img { transform: scale(1.1); }
+        
+        .pattern-info { padding: 20px; }
+        .pattern-name { font-size: 1.2rem; color: var(--primary-green); margin-bottom: 5px; }
+        .set-link { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- BUTTON --- */
+        .btn-contact {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 40px;
+            transition: 0.3s;
+        }
+        .btn-contact:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(59, 95, 42, 0.2); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .grid-container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .feature-card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+    <section class="product-hero">
+        <div class="hero-container">
+            <span class="badge-premium">CHẤT LIỆU CAO CẤP</span>
+            <h1 class="hero-title">Bình Giữ Nhiệt <br><i>Inox 316</i></h1>
+            <p class="hero-desc">Sự kết hợp hoàn hảo giữa công nghệ giữ nhiệt đỉnh cao và nghệ thuật họa tiết thủ công. An toàn tuyệt đối cho sức khỏe, bền bỉ cùng thời gian.</p>
+            
+            <div class="img-box" style="max-width: 400px; margin: 0 auto; border-radius: 200px 200px 20px 20px;">
+                <img src="/images/DanhSachSanPham/BinhGiuNhiet/anh002.jpg" alt="Bình giữ nhiệt Inox 316">
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-box">
+        <div class="feature-card">
+            <h3>Giữ Nhiệt 24h</h3>
+            <p>Lớp chân không kép giúp giữ nóng 12h và giữ lạnh lên đến 24h.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Inox 316</h3>
+            <p>Loại thép không gỉ cao cấp nhất, chống ăn mòn và an toàn cho thực phẩm.</p>
+        </div>
+        <div class="feature-card">
+            <h3>5 Họa Tiết</h3>
+            <p>Mỗi bình là một câu chuyện riêng, tương ứng với 5 bộ Set quà tặng độc bản.</p>
+        </div>
+    </section>
+
+    <section class="collection-section">
+        <h2 style="font-size: 2.5rem; color: var(--primary-green); margin-bottom: 30px;">Bản Giao Hưởng Họa Tiết</h2>
+        
+        <div class="grid-container">
+            <div class="pattern-card">
+                <div class="img-box"><img src="/images/DanhSachSanPham/BinhGiuNhiet/anh001.jpg" alt="Họa tiết Sen"></div>
+                <div class="pattern-info">
+                    <p class="set-link">Set Quà Tĩnh Lặng</p>
+                    <h3 class="pattern-name">Họa tiết "Sen Trắng"</h3>
+                </div>
+            </div>
+
+            <div class="pattern-card">
+                <div class="img-box"><img src="/images/DanhSachSanPham/BinhGiuNhiet/anh003.jpg" alt="Họa tiết Mây"></div>
+                <div class="pattern-info">
+                    <p class="set-link">Set Quà Bình An</p>
+                    <h3 class="pattern-name">Họa tiết "Vân Du"</h3>
+                </div>
+            </div>
+
+            <div class="pattern-card">
+                <div class="img-box"><img src="/images/DanhSachSanPham/BinhGiuNhiet/anh004.jpg" alt="Họa tiết Hoa"></div>
+                <div class="pattern-info">
+                    <p class="set-link">Set Quà Nồng Nàn</p>
+                    <h3 class="pattern-name">Họa tiết "Mẫu Đơn"</h3>
+                </div>
+            </div>
+
+            <div class="pattern-card">
+                <div class="img-box"><img src="/images/DanhSachSanPham/BinhGiuNhiet/anh005.jpg" alt="Họa tiết Rừng"></div>
+                <div class="pattern-info">
+                    <p class="set-link">Set Quà Sức Sống</p>
+                    <h3 class="pattern-name">Họa tiết "Diệp Lục"</h3>
+                </div>
+            </div>
+
+            <div class="pattern-card">
+                <div class="img-box"><img src="/images/DanhSachSanPham/BinhGiuNhiet/anh006.jpg" alt="Họa tiết Cổ Điển"></div>
+                <div class="pattern-info">
+                    <p class="set-link">Set Quà Di Sản</p>
+                    <h3 class="pattern-name">Họa tiết "Thanh Tao"</h3>
+                </div>
+            </div>
+
+            <div class="pattern-card">
+                <div class="img-box"><img src="/images/DanhSachSanPham/BinhGiuNhiet/anh007.jpg" alt="Họa tiết Cổ Điển"></div>
+                <div class="pattern-info">
+                    <p class="set-link">Set Quà Di Sản</p>
+                    <h3 class="pattern-name">Họa tiết "Thanh Tao"</h3>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="btn-contact">ĐẶT HÀNG NGAY</a>
+    </section>
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+</body>
+</html>

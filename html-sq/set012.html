@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set quà Vẹn Tròn Nghĩa Tình - Vòng Tròn Xanh</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/setquatang.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-cream">
+    <div id="header-container"></div>
+
+    <section class="section-padding container">
+        <div class="product-detail-grid">
+            
+            <div class="product-gallery">
+                <img id="mainImage" src="../images/DanhSachSetQua/set012/anh (1).jpg" alt="Khăn Lụa Tơ Tằm Thượng Hạng" class="main-img">
+                
+                <div class="thumbnail-list" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+                    <img src="../images/DanhSachSetQua/set012/anh (1).jpg" class="thumb active" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (2).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (3).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (4).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (5).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (6).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (7).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (8).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (9).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (10).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (11).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="../images/DanhSachSetQua/set012/anh (12).jpg" class="thumb" onclick="changeImage(this)">
+                 
+                 </div>
+            </div>
+
+            <div class="product-info-detail">
+                <div class="product-meta">
+                    <span class="product-code">Mã: VTX-012</span>
+                </div>
+                
+                <h1 class="detail-title">Vẹn Tròn Nghĩa Tình</h1>
+                <p class="detail-price">440.000 ₫</p>
+                
+                <div class="detail-description">
+                    <p>Gói trọn trong chiếc giỏ mây tre đan tay tỉ mỉ là sự giao thoa giữa hương vị truyền thống và nghệ thuật thủ công Việt. Điểm nhấn của set quà chính là hũ Chanh Sành được ủ nấu kỳ công, mang theo vị ngọt thanh tao giúp vỗ về thân tâm. Kết hợp cùng những chiếc lót ly khảm xà cừ đỏ rực rỡ như những cánh hoa may mắn, Vẹn Tròn Nghĩa Tình không chỉ là một món quà, mà là lời chúc cho những mối thâm giao luôn bền chặt, ấm nồng và đủ đầy như chính cái tên của nó.</p>
+                    <ul>
+                        <li><strong>Chi tiết sản phẩm Chanh Sành:</strong> <a href="../html/chanhsanh.html" class="explore-candle-link">Sản phẩm Chanh Sành</a></li>                 
+                        <li><strong>Đóng gói:</strong>Thiệp nghệ thuật đồng bộ. Hộp quà Vòng Tròn Xanh, kèm thiệp viết tay và túi xách sang trọng, phù hợp tặng ngày 8/3.</li>
+                        <li><strong>Tư vấn thêm các mẫu lót khảm trai khác:</strong> <a href="https://www.facebook.com/VONGTRONXANH1AAOSEN/photos?locale=vi_VN" class="explore-candle-link">Fanpage</a></li>                 
+                    </ul>
+                </div>
+
+                <div class="detail-actions">
+                    <a href="https://zalo.me/0976152886" target="_blank" class="btn btn-primary btn-large">💬 Đặt Hàng Qua Zalo</a>
+                    <p class="support-text">Hoặc gọi Hotline: <strong>097 615 28 86</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+        <div id="footer-container"></div>
+        <script src="../js/global.js"></script>
+        <script src="script.js"></script>
+
+    <script>
+        // Hàm thay đổi ảnh lớn khi click vào ảnh nhỏ
+        function changeImage(element) {
+            // Đổi nguồn ảnh chính
+            document.getElementById('mainImage').src = element.src;
+            // Cập nhật viền cho ảnh nhỏ đang được chọn
+            let thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
