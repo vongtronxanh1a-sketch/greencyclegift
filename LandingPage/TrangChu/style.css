@@ -1,0 +1,452 @@
+/* --- TÙY CHỈNH CHUNG CHO TRANG CHỦ --- */
+body {
+    background-color: #FDFDFB;
+    color: var(--text-dark);
+}
+
+h2.section-title {
+    color: var(--primary-green);
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-desc, .section-subtitle {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 1. HERO BANNER SLIDER --- */
+.hero-banner {
+    width: 100%;
+    position: relative;
+    max-height: 600px;
+    overflow: hidden;
+    background-color: var(--light-green);
+}
+
+.banner-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/6; 
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 12px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s;
+}
+
+.dot.active, .dot:hover {
+    background-color: var(--primary-green);
+    transform: scale(1.2);
+}
+
+/* --- CÁC SECTION TRANG CHỦ --- */
+.product-tabs-section { padding: 60px 50px; }
+.tabs-header { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; }
+.tabs-header h2 { font-size: 1.5rem; color: #888; cursor: pointer; padding-bottom: 5px; transition: 0.3s; }
+.tabs-header h2.active { color: var(--primary-green); border-bottom: 2px solid var(--primary-green); font-weight: bold; }
+.product-carousel { display: flex; align-items: center; justify-content: center; gap: 20px; position: relative; }
+.carousel-track { display: flex; gap: 30px; overflow: hidden; max-width: 1200px; }
+.product-card { flex: 1; min-width: 250px; position: relative; text-align: center; cursor: pointer; }
+.img-ratio-9-16 { width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; background: #f4f4f4; margin-bottom: 15px; }
+.img-ratio-9-16 img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.product-card:hover .img-ratio-9-16 img { transform: scale(1.05); }
+.badge { position: absolute; top: 15px; right: 15px; background-color: var(--primary-green); color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; z-index: 2; }
+.product-card h3 { font-size: 1.1rem; font-weight: normal; margin-bottom: 10px; color: #333; }
+.product-card .price { font-size: 1.3rem; color: #D35400; font-weight: bold; }
+.nav-btn { background: none; border: none; font-size: 2rem; color: #ccc; cursor: pointer; transition: color 0.3s; }
+.nav-btn:hover { color: var(--primary-green); }
+.btn-view-all { display: inline-block; padding: 10px 20px; border: 1px solid #ccc; border-radius: 20px; color: #666; transition: 0.3s; }
+.btn-view-all:hover { border-color: var(--primary-green); color: var(--primary-green); }
+
+.featured-grid-section { padding: 60px 50px; background-color: #F9FAF7; }
+.bento-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; max-width: 1200px; margin: 0 auto 30px; height: 600px; }
+.grid-item { border-radius: 15px; overflow: hidden; }
+.grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.grid-item:hover img { transform: scale(1.03); }
+.grid-item.large { grid-column: 1 / 2; grid-row: 1 / 3; }
+.grid-item.small.top { grid-column: 2 / 3; grid-row: 1 / 2; }
+.grid-item.small.bottom { grid-column: 2 / 3; grid-row: 2 / 3; }
+
+.btn-solid-green { background-color: var(--primary-green); color: white; padding: 15px 30px; border-radius: 30px; font-weight: bold; display: inline-block; transition: background 0.3s; }
+.btn-solid-green:hover { background-color: #2c471f; }
+
+.target-audience-section { padding: 80px 50px; max-width: 1300px; margin: 0 auto; }
+.audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.audience-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.audience-card img { width: 100%; height: 250px; object-fit: cover; }
+.audience-info { padding: 20px; }
+.audience-info h3 { color: var(--primary-green); margin-bottom: 15px; font-size: 1.2rem; }
+.audience-info p { font-size: 0.95rem; color: #666; line-height: 1.5; }
+
+.occasions-section { padding: 60px 50px; background-color: #fff; }
+.occasions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
+.occasion-card { position: relative; overflow: hidden; border-radius: 12px; }
+.occasion-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px 20px 20px; background: linear-gradient(transparent, rgba(59, 95, 42, 0.9)); color: white; text-align: center; }
+.occasion-content h3 { font-size: 1.4rem; margin-bottom: 10px; font-weight: normal; }
+.btn-link { color: white; font-weight: bold; font-size: 0.9rem; }
+
+.core-values-section { padding: 80px 50px; background-color: var(--light-green); }
+.values-container { max-width: 1200px; margin: 0 auto; }
+.values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; margin-top: 50px; }
+.value-icon { font-size: 3rem; margin-bottom: 20px; }
+.value-item h3 { color: var(--primary-green); margin-bottom: 15px; font-size: 1.2rem; }
+.value-item p { color: #555; line-height: 1.5; font-size: 0.95rem; }
+
+.testimonials-section { padding: 80px 50px; background-color: #FDFDFB; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
+.testimonial-card { background: #fff; padding: 40px 30px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.03); text-align: center; border-top: 4px solid var(--primary-green); }
+.stars { color: #F5A623; font-size: 1.5rem; margin-bottom: 20px; }
+.review-text { font-style: italic; color: #666; margin-bottom: 20px; line-height: 1.6; }
+.customer-name { color: var(--primary-green); font-weight: bold; }
+
+.blog-section { padding: 80px 50px; background-color: #fff; }
+.blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 1000px; margin: 0 auto; }
+.blog-card { border-radius: 12px; overflow: hidden; background: #F9FAF7; }
+.blog-card img { width: 100%; height: 300px; object-fit: cover; transition: transform 0.5s; }
+.blog-card:hover img { transform: scale(1.03); }
+.blog-info { padding: 30px; }
+.blog-date { color: #999; font-size: 0.85rem; display: block; margin-bottom: 10px; }
+.blog-info h3 { color: var(--text-dark); font-size: 1.3rem; margin-bottom: 20px; line-height: 1.4; }
+.blog-info .btn-link { color: var(--primary-green); }
+
+
+/* =========================================
+   THIẾT KẾ ĐÁP ỨNG (RESPONSIVE) - TRANG CHỦ DÀNH CHO ĐIỆN THOẠI
+   LUÔN ĐẶT Ở CUỐI FILE CSS
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* Thu nhỏ khoảng cách chung của các khối nội dung */
+    .product-tabs-section, .featured-grid-section, 
+    .target-audience-section, .occasions-section, 
+    .core-values-section, .testimonials-section, .blog-section {
+        padding: 40px 15px;
+    }
+
+    h2.section-title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .section-desc, .section-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+
+    /* --- HERO BANNER --- */
+    .hero-banner {
+        max-height: 250px; 
+    }
+    .banner-slider {
+        aspect-ratio: 16/9; 
+    }
+
+    /* --- TABS & CAROUSEL --- */
+    .tabs-header {
+        gap: 15px;
+    }
+    .tabs-header h2 {
+        font-size: 1.1rem;
+    }
+    .product-card {
+        min-width: 160px; /* Hiển thị 2 set quà cạnh nhau */
+    }
+    .product-card h3 {
+        font-size: 1rem;
+    }
+    .product-card .price {
+        font-size: 1.1rem;
+    }
+
+    /* --- BENTO GRID NỔI BẬT --- */
+    .bento-grid {
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto;
+        height: auto;
+    }
+    .grid-item.large, .grid-item.small.top, .grid-item.small.bottom {
+        grid-column: 1 / 2;
+        grid-row: auto;
+        aspect-ratio: 1/1; /* Đưa tất cả ảnh về hình vuông trên điện thoại cho to rõ */
+    }
+
+    /* --- CÁC GRID CÒN LẠI --- */
+    /* Gập tất cả thành 1 cột từ trên xuống dưới */
+    .audience-grid, .occasions-grid, .values-grid, .testimonials-grid, .blog-grid {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+
+    .value-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+}
+
+/* Tinh chỉnh cho điện thoại màn hình nhỏ */
+@media screen and (max-width: 400px) {
+    .product-card {
+        min-width: 140px; 
+    }
+}
+
+/* Tùy chỉnh phần Header của Tabs */
+.tabs-header {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.tab-link {
+    font-size: 16px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.3s;
+}
+
+.tab-link.active {
+    color: #3b5d2b;
+    font-weight: bold;
+    border-bottom: 2px solid #3b5d2b;
+    padding-bottom: 5px;
+}
+
+/* Xử lý nội dung các Tab */
+.tab-content {
+    display: none; /* Mặc định ẩn tất cả */
+    animation: fadeEffect 0.4s ease-in-out;
+}
+
+/* HIỂN THỊ TRÊN SMARTPHONE (Lưới 2x2 cân đối) */
+.tab-content.active {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Giữ vững 2 cột vuông vắn */
+    column-gap: 15px; /* Khoảng cách ngang giữa 2 sản phẩm */
+    row-gap: 25px;    /* Khoảng cách dọc giữa hàng trên và hàng dưới */
+    padding: 0 10px;
+}
+
+/* HIỂN THỊ TRÊN LAPTOP/PC (Từ 768px trở lên) */
+@media screen and (min-width: 768px) {
+    .tab-content.active {
+        grid-template-columns: repeat(4, 1fr); /* Dàn thành 4 cột ngang cho màn hình to */
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* HIỂN THỊ TRÊN LAPTOP/PC (Từ 768px trở lên) */
+@media screen and (min-width: 768px) {
+    .tab-content.active {
+        grid-template-columns: repeat(3, 1fr); /* Chuyển thành 3 cột */
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .tab-content.active .product-card:nth-child(3) {
+        grid-column: auto; /* Trả lại kích thước bình thường */
+        max-width: 100%;
+    }
+}
+
+/* Hiệu ứng mờ ảo khi chuyển Tab */
+@keyframes fadeEffect {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tỷ lệ ảnh 9:16 */
+.img-ratio-9-16 {
+    position: relative;
+    width: 100%;
+    padding-top: 177.77%; /* Tỷ lệ chuẩn 16/9 = 177.77% */
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.img-ratio-9-16 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* --- PHẦN CHIẾN DỊCH 8/3 (MỚI) --- */
+.featured-campaign-section {
+    padding: 20px 10px;
+    background-color: #ffffff;
+}
+
+.campaign-header {
+    margin-bottom: 25px;
+}
+
+/* THIẾT KẾ GRID CHO SMARTPHONE (Bố cục tạp chí 1 lớn, 2 nhỏ) */
+.lookbook-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Cột trái to hơn cột phải một chút */
+    grid-template-rows: repeat(2, 1fr); /* Chia thành 2 hàng bằng nhau */
+    gap: 12px;
+}
+
+/* Ảnh chính chiếm trọn 2 hàng bên trái */
+.lookbook-hero {
+    grid-row: 1 / span 2;
+    grid-column: 1 / 2;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(59, 93, 43, 0.15); /* Đổ bóng màu xanh lá */
+}
+
+/* 2 Ảnh phụ xếp bên phải */
+.lookbook-sub {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Lớp phủ mờ (Overlay) cho ảnh chính để làm nổi bật chữ */
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 15px 15px;
+    background: linear-gradient(to top, rgba(59, 93, 43, 0.9), transparent);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.hero-overlay h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.view-detail {
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Nút bấm xanh lá */
+.btn-solid-green {
+    display: inline-block;
+    background-color: #3b5d2b;
+    color: #ffffff;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(59, 93, 43, 0.3);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-solid-green:active {
+    transform: scale(0.95); /* Hiệu ứng lún nút khi chạm ngón tay vào */
+}
+
+/* Hiệu ứng "Thở" (Breathing) nhè nhẹ cho ảnh chính thu hút sự chú ý */
+@keyframes breathingImage {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.04); }
+}
+
+.lookbook-hero .img-ratio-9-16 img {
+    animation: breathingImage 8s infinite alternate ease-in-out;
+}
+
+/* HIỂN THỊ TRÊN LAPTOP/PC (Tuỳ chọn phụ) */
+@media screen and (min-width: 768px) {
+    .lookbook-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .lookbook-hero {
+        grid-row: auto;
+        grid-column: auto;
+    }
+}
+
+/* --- ẨN SẢN PHẨM TRÊN LAPTOP --- */
+
+/* Khi màn hình lớn hơn 992px (Laptop/Desktop) */
+@media screen and (min-width: 993px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+/* Đảm bảo trên điện thoại (màn hình nhỏ hơn 992px) nó vẫn hiện bình thường */
+@media screen and (max-width: 992px) {
+    .mobile-only {
+        display: block; /* Hoặc display: flex tùy theo cấu trúc của bạn */
+    }
+}

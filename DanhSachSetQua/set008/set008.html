@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set quà Tôn vinh Nhan sắc - Vòng Tròn Xanh</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../../../Global/global.css">
+    <link rel="stylesheet" href="../../LandingPage/SetQuaTang/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-cream">
+
+    <div id="header-container"></div>
+
+    <section class="section-padding container">
+        <div class="product-detail-grid">
+            
+            <div class="product-gallery">
+                <img id="mainImage" src="anh001.jpg" alt="Khăn Lụa Tơ Tằm Thượng Hạng" class="main-img">
+                
+                <div class="thumbnail-list">
+                    <img src="anh001.jpg" class="thumb active" onclick="changeImage(this)">
+                    <img src="anh002.jpg" class="thumb" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <div class="product-info-detail">
+                <div class="product-meta">
+                    <span class="product-code">Mã: VTX-008</span>
+                </div>
+                
+                <h1 class="detail-title">Set quà Tôn vinh Nhan sắc</h1>
+                <p class="detail-price">450.000 ₫</p>
+                
+                <div class="detail-description">
+                    <p>Dành tặng người phụ nữ bản lĩnh, set quà là sự kết hợp giữa nét mềm mại của chiếc khăn và sự sắc sảo, lấp lánh của chiếc cài áo cao cấp. Đây là lời tri ân dành cho những người "cầm lái" đầy nhiệt huyết.</p>
+                    <ul>
+                        <li><strong>Chất liệu:</strong> Khăn Lụa chất lượng cao.</li>
+                        <li><strong>Kích thước:</strong> Size cơ bản 70x70 cm.</li>
+                        <li><strong>Đóng gói:</strong>Thiệp nghệ thuật đồng bộ. Hộp quà Vòng Tròn Xanh, kèm thiệp viết tay và túi xách sang trọng, phù hợp tặng ngày 8/3.</li>
+                        <li><strong>Tư vấn thêm các mẫu khăn khác:</strong> <a href="https://www.facebook.com/VONGTRONXANH1AAOSEN/photos?locale=vi_VN" class="explore-candle-link">Fanpage</a></li>                 
+                        <li><strong>Cài áo cao cấp</strong> <a href="../../DanhSachSanPham/CaiAoCaoCap/index.html" class="explore-candle-link">Khám phá bộ sưu tập Cài Áo Cao Cấp </a></li>  
+                    </ul>
+                </div>
+
+                <div class="detail-actions">
+                    <a href="https://zalo.me/0976152886" target="_blank" class="btn btn-primary btn-large">💬 Đặt Hàng Qua Zalo</a>
+                    <p class="support-text">Hoặc gọi Hotline: <strong>097 615 28 86</strong></p>
+                </div>
+                
+                
+            </div>
+
+        </div>
+    </section>
+
+        <div id="footer-container"></div>
+        <script src="../../Global/global.js"></script>
+        <script src="script.js"></script>
+
+    <script>
+        // Hàm thay đổi ảnh lớn khi click vào ảnh nhỏ
+        function changeImage(element) {
+            // Đổi nguồn ảnh chính
+            document.getElementById('mainImage').src = element.src;
+            // Cập nhật viền cho ảnh nhỏ đang được chọn
+            let thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+    <script src="../../script.js"></script>
+</body>
+</html>

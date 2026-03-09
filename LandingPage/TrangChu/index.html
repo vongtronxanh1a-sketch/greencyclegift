@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vòng Tròn Xanh - Quà tặng từ trái tim</title>
+    <link rel="stylesheet" href="../../Global/global.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="header-container"></div>
+    
+    <main>
+        <section class="hero-banner reveal">
+            <div class="banner-slider">
+                <div class="slide active">
+                    <img src="../../LandingPage/TrangChu/images/sec001/anh001.jpg" alt="Banner Quà Tặng 1" class="hero-img">
+                </div>
+                <div class="slide">
+                    <img src="../../LandingPage/TrangChu/images/sec001/anh002.jpg" alt="Banner Quà Tặng 2" class="hero-img">
+                </div>
+                <div class="slide">
+                    <img src="../../LandingPage/TrangChu/images/sec001/anh003.jpg" alt="Banner Quà Tặng 3" class="hero-img">
+                </div>
+                <div class="slide">
+                    <img src="../../LandingPage/TrangChu/images/sec001/anh004.jpg" alt="Banner Quà Tặng 4" class="hero-img">
+                </div>
+                <div class="slide">
+                    <img src="../../LandingPage/TrangChu/images/sec001/anh005.jpg" alt="Banner Quà Tặng 4" class="hero-img">
+                </div>
+
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+        </section>
+        <section class="product-tabs-section reveal">
+    <div class="tabs-header">
+        <h2 class="tab-link active" data-target="tab-new">Sản Phẩm Mới</h2>
+        <h2 class="tab-link" data-target="tab-best">Bán Chạy</h2>
+        <h2 class="tab-link" data-target="tab-sale">Sale</h2>
+    </div>
+    
+    <div class="tabs-container">
+        
+        <div class="tab-content active" id="tab-new">
+            <div class="product-card">
+                <span class="badge">New</span>
+                <div class="img-ratio-9-16">
+                    <img src="../TrangChu/images/sec002/new/anh001.jpg" alt="Set Quà 1">
+                </div>
+                <h3>Hoa của Thu</h3>
+                <p class="price">390.000<sup>đ</sup></p>
+            </div>
+            <div class="product-card">
+                <span class="badge">New</span>
+                <div class="img-ratio-9-16">
+                    <img src="../TrangChu/images/sec002/new/anh002.jpg" alt="Set Quà 2">
+                </div>
+                <h3>Sen tinh khôi</h3>
+                <p class="price">420.000<sup>đ</sup></p>
+            </div>
+            <div class="product-card">
+                <span class="badge">New</span>
+                <div class="img-ratio-9-16">
+                    <img src="../TrangChu/images/sec002/new/anh003.jpg" alt="Set Quà 3">
+                </div>
+                <h3>Khuê tú tròn vẹn</h3>
+                <p class="price">190.000<sup>đ</sup></p>
+            </div>
+            <div class="product-card mobile-only">
+                <span class="badge">New</span>
+                <div class="img-ratio-9-16">
+                    <img src="../TrangChu/images/sec002/new/anh004.jpg" alt="Set Quà 3">
+                </div>
+                <h3>Hồng dịu êm</h3>
+                <p class="price">590.000<sup>đ</sup></p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="tab-best">
+            <div class="product-card">
+                <span class="badge" style="background-color: #F5A623;">Hot</span>
+                <div class="img-ratio-9-16">
+                    <img src="https://via.placeholder.com/1080x1920/e6eddf/3B5F2A?text=Set+Qua+Tone+Sang+4K" alt="Set Quà 4">
+                </div>
+                <h3>Set Quà Tri Ân</h3>
+                <p class="price">420.000<sup>đ</sup></p>
+            </div>
+            <div class="product-card">
+                <span class="badge" style="background-color: #F5A623;">Hot</span>
+                <div class="img-ratio-9-16">
+                    <img src="https://via.placeholder.com/1080x1920/e6eddf/3B5F2A?text=Set+Qua+Tone+Sang+4K" alt="Set Quà 5">
+                </div>
+                <h3>Set Quà Sức Khỏe</h3>
+                <p class="price">590.000<sup>đ</sup></p>
+            </div>
+            <div class="product-card">
+                <span class="badge" style="background-color: #F5A623;">Hot</span>
+                <div class="img-ratio-9-16">
+                    <img src="https://via.placeholder.com/1080x1920/e6eddf/3B5F2A?text=Set+Qua+Tone+Sang+4K" alt="Set Quà 6">
+                </div>
+                <h3>Set Quà Tròn Vẹn</h3>
+                <p class="price">480.000<sup>đ</sup></p>
+            </div>
+            <div class="product-card mobile-only">
+                <span class="badge">New</span>
+                <div class="img-ratio-9-16">
+                    <img src="../TrangChu/images/sec002/new/anh003.jpg" alt="Set Quà 3">
+                </div>
+                <h3>Khuê tú tròn vẹn</h3>
+                <p class="price">190.000<sup>đ</sup></p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="tab-sale">
+            <div class="product-card">
+                <span class="badge" style="background-color: #D35400;">-20%</span>
+                <div class="img-ratio-9-16">
+                    <img src="https://via.placeholder.com/1080x1920/e6eddf/3B5F2A?text=Set+Qua+Tone+Sang+4K" alt="Set Quà 7">
+                </div>
+                <h3>Set Quà Bình Minh</h3>
+                <p class="price">320.000<sup>đ</sup></p>
+            </div>
+            <div class="product-card">
+                <span class="badge" style="background-color: #D35400;">-15%</span>
+                <div class="img-ratio-9-16">
+                    <img src="https://via.placeholder.com/1080x1920/e6eddf/3B5F2A?text=Set+Qua+Tone+Sang+4K" alt="Set Quà 8">
+                </div>
+                <h3>Set Quà Yêu Thương</h3>
+                <p class="price">425.000<sup>đ</sup></p>
+            </div>
+            <div class="product-card">
+                <span class="badge" style="background-color: #D35400;">-10%</span>
+                <div class="img-ratio-9-16">
+                    <img src="https://via.placeholder.com/1080x1920/e6eddf/3B5F2A?text=Set+Qua+Tone+Sang+4K" alt="Set Quà 9">
+                </div>
+                <h3>Set Quà Hạnh Phúc</h3>
+                <p class="price">630.000<sup>đ</sup></p>
+            </div>
+            <div class="product-card mobile-only">
+                <span class="badge">New</span>
+                <div class="img-ratio-9-16">
+                    <img src="../TrangChu/images/sec002/new/anh003.jpg" alt="Set Quà 3">
+                </div>
+                <h3>Khuê tú tròn vẹn</h3>
+                <p class="price">190.000<sup>đ</sup></p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center" style="margin-top: 25px;">
+        <a href="../../LandingPage/SanPham/index.html" class="btn-view-all">Xem tất cả ❯</a>
+    </div>
+</section>
+
+        <section class="featured-grid-section reveal">
+            <h2 class="section-title">Sản Phẩm Nổi Bật Mùa 8/3</h2>
+            <div class="bento-grid">
+                <div class="grid-item large">
+                    <img src="../../LandingPage/TrangChu/images/sec003/anh001.jpg" alt="Set lớn">
+                </div>
+                <div class="grid-item small top">
+                    <img src="../../LandingPage/TrangChu/images/sec003/anh002.jpg" alt="Set nhỏ 1">
+                </div>
+                <div class="grid-item small bottom">
+                    <img src="../../LandingPage/TrangChu/images/sec003/anh003.jpg" alt="Set nhỏ 2">
+                </div>
+            </div>
+            <p class="section-desc">Bộ sưu tập sản phẩm cao cấp của chúng tôi được tuyển chọn kỹ lưỡng, chú trọng đến chất lượng và tính độc đáo. Mỗi món quà đều được thiết kế tinh xảo và đóng gói cẩn thận, mang đến trải nghiệm tặng quà trọn vẹn nhất cho ngày 8/3.</p>
+            <div class="text-center">
+                <a href="../../LandingPage/SetQuaTang/index.html" class="btn-solid-green">Xem Toàn Bộ Các Set Quà</a>
+            </div>
+        </section>
+
+        <section class="target-audience-section reveal">
+            <h2 class="section-title">Quà Tặng Theo Đối Tượng</h2>
+            <p class="section-subtitle">Chọn món quà phù hợp nhất để thể hiện sự quan tâm tinh tế đến từng người phụ nữ bạn yêu thương.</p>
+            
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <img src="../../LandingPage/TrangChu/images/sec004/anh001.jpg" alt="Cho Mẹ & Bà">
+                    <div class="audience-info">
+                        <h3>Cho Mẹ & Bà</h3>
+                        <p>Gửi gắm lòng biết ơn sâu sắc qua những set quà mang đậm nét truyền thống và sự ấm áp. Một chiếc khăn lụa tơ tằm mềm mại che chở gió lạnh hay bộ ấm chén gốm sứ mộc mạc cho buổi trà chiều thanh tịnh sẽ là lời chúc sức khỏe, bình an chân thành nhất gửi đến những người phụ nữ vĩ đại của gia đình.</p>
+                    </div>
+                </div>
+                <div class="audience-card">
+                    <img src="../../LandingPage/TrangChu/images/sec004/anh002.jpg" alt="Cho Vợ">
+                    <div class="audience-info">
+                        <h3>Cho Vợ & Người Yêu</h3>
+                        <p>Thắp sáng tình yêu bằng những món quà tinh tế, lãng mạn giúp tôn vinh vẻ đẹp rạng ngời của nàng. Sự kết hợp hoàn hảo giữa khăn lụa kiêu sa, nến thơm thư giãn và những món đồ thủ công tỉ mỉ sẽ thay bạn nói lời yêu thương ngọt ngào, nâng niu cảm xúc của người phụ nữ bạn trân trọng.</p>
+                    </div>
+                </div>
+                <div class="audience-card">
+                    <img src="../../LandingPage/TrangChu/images/sec004/anh003.jpg" alt="Cho Sếp">
+                    <div class="audience-info">
+                        <h3>Cho Đối Tác & Sếp Nữ</h3>
+                        <p>Thể hiện sự chuyên nghiệp và gu thẩm mỹ tinh tế qua những bộ quà tặng cao cấp. Các thiết kế mây tre đan nghệ thuật kết hợp cùng gốm sứ sang trọng không chỉ là lời tri ân sâu sắc mà còn khẳng định sự trân trọng, cầu chúc thành công và gắn kết mối quan hệ hợp tác bền chặt.</p>
+                    </div>
+                </div>
+                <div class="audience-card">
+                    <img src="../../LandingPage/TrangChu/images/sec004/anh004.jpg" alt="Cho Bạn Bè">
+                    <div class="audience-info">
+                        <h3>Cho Bạn Bè & Đồng Nghiệp</h3>
+                        <p>Lan tỏa niềm vui đến những người chị em kề vai sát cánh mỗi ngày bằng những set quà nhỏ xinh, mang dấu ấn cá nhân. Những món đồ handmade thân thiện với môi trường, thiết thực nhưng không kém phần duyên dáng chắc chắn sẽ mang lại nụ cười rạng rỡ và tiếp thêm năng lượng tích cực cho họ.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <section class="occasions-section reveal">
+            <h2 class="section-title">Gợi Ý Quà Tặng Ý Nghĩa</h2>
+            <p class="section-subtitle">Mỗi dịp đặc biệt đều cần một món quà trọn vẹn tâm ý.</p>
+            
+            <div class="occasions-grid">
+                <div class="occasion-card">
+                    <div class="img-ratio-9-16">
+                        <img src="../../LandingPage/TrangChu/images/sec005/anh001.jpg" alt="Quà Sinh Nhật">
+                    </div>
+                    <div class="occasion-content">
+                        <h3>Quà Sinh Nhật</h3>
+                        <a href="#" class="btn-link">Khám phá ❯</a>
+                    </div>
+                </div>
+                <div class="occasion-card">
+                    <div class="img-ratio-9-16">
+                        <img src="../../LandingPage/TrangChu/images/sec005/anh002.jpg" alt="Quà Kỷ Niệm">
+                    </div>
+                    <div class="occasion-content">
+                        <h3>Quà Kỷ Niệm</h3>
+                        <a href="#" class="btn-link">Khám phá ❯</a>
+                    </div>
+                </div>
+                <div class="occasion-card">
+                    <div class="img-ratio-9-16">
+                        <img src="../../LandingPage/TrangChu/images/sec005/anh003.jpg" alt="Quà Doanh Nghiệp">
+                    </div>
+                    <div class="occasion-content">
+                        <h3>Quà Doanh Nghiệp</h3>
+                        <a href="#" class="btn-link">Khám phá ❯</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section reveal">
+            <h2 class="section-title">Khách Hàng Nói Gì?</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Set quà rất đẹp, màu xanh lá nhìn cực kỳ mát mắt và sang trọng. Bạn gái mình nhận được rất thích mùi hương của nến và xà bông."</p>
+                    <h4 class="customer-name">- Anh Hoàng Vũ -</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Đóng gói cẩn thận, đặc biệt ấn tượng với tấm thiệp viết tay nét chữ rất đẹp. Chắc chắn sẽ ủng hộ Vòng Tròn Xanh vào những dịp tới."</p>
+                    <h4 class="customer-name">- Chị Mai Phương -</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Mình đặt 50 set quà tặng nhân viên 8/3. Các bạn hỗ trợ cực kỳ nhiệt tình, giao hàng đúng hẹn và set nào cũng chỉn chu."</p>
+                    <h4 class="customer-name">- Khách hàng Doanh Nghiệp -</h4>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="../../LandingPage/VeChungToi/index.html" class="btn-outline">Xem thêm về chung tôi</a>
+            </div>
+        </section>
+
+        <section class="blog-section reveal">
+            <h2 class="section-title">Góc Cảm Hứng</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="../../LandingPage/TrangChu/images/sec006/anh001.jpg" alt="Blog 1">
+                    <div class="blog-info">
+                        <span class="blog-date">10/03/2026</span>
+                        <h3>Nâng cao trải nghiệm khi sử dụng chanh sánh những ngày se lạnh</h3>
+                        <a href="#" class="btn-link">Đọc thêm ❯</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="../../LandingPage/TrangChu/images/sec006/anh002.jpg" alt="Blog 2">
+                    <div class="blog-info">
+                        <span class="blog-date">05/03/2026</span>
+                        <h3>Bí quyết chọn nến thơm giúp thư giãn tinh thần sau ngày dài làm việc</h3>
+                        <a href="#" class="btn-link">Đọc thêm ❯</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="../../LandingPage/BaiViet/index.html" class="btn-outline">Xem tất cả bài viết</a>
+            </div>
+        </section>
+    </main>
+    
+
+    <div id="footer-container"></div>
+
+    <script src="../../Global/global.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

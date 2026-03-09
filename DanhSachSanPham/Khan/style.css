@@ -1,0 +1,104 @@
+/* --- BIẾN MÀU SẮC --- */
+:root {
+    --primary-green: #3B5F2A;
+    --text-gray: #666666;
+    --white: #ffffff;
+}
+
+/* --- TIÊU ĐỀ MẶC ĐỊNH --- */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.container {
+    padding: 20px 15px;
+}
+
+.page-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-subtitle {
+    font-family: 'Arial', sans-serif;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    margin-top: 10px;
+}
+
+/* --- THIẾT KẾ KHỐI DANH MỤC --- */
+.category-grid {
+    display: flex;
+    flex-direction: column; /* Xếp dọc chuẩn Smartphone */
+    gap: 35px;
+}
+
+.category-block {
+    text-decoration: none;
+    display: block;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng nảy nhẹ khi chạm vào thẻ trên điện thoại */
+.category-block:active {
+    transform: scale(0.98);
+}
+
+.category-image {
+    width: 100%;
+    aspect-ratio: 4/5; /* Tỷ lệ ảnh đứng hơi lùn hơn 9:16 để chừa chỗ cho chữ */
+    overflow: hidden;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.category-block:hover .category-image img {
+    transform: scale(1.05); /* Zoom nhẹ ảnh khi xem trên máy tính */
+}
+
+.category-info {
+    padding: 25px 20px;
+}
+
+.category-info h2 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+}
+
+.category-info p {
+    font-family: 'Arial', sans-serif;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.btn-discover {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: var(--primary-green);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- RESPONSIVE CHO MÁY TÍNH --- */
+@media screen and (min-width: 768px) {
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 cột trên máy tính */
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ Sưu Tập Khăn Tơ Tằm - Vòng Tròn Xanh</title>
+    <link rel="stylesheet" href="../../../LandingPage/SetQuaTang/style.css">
+    <link rel="stylesheet" href="../../../Global/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-cream">
+    <div id="header-container"></div>
+    <header class="gallery-header">
+        <h1 style="color: azure;">Bộ Sưu Tập Khăn Tơ Tằm</h1>
+        <p>Tinh hoa lụa Việt - Vẹn tròn nét đẹp truyền thống</p>
+        <div class="category-nav">
+            <a href="#size53">Khăn Tơ Tằm 53</a>
+            <a href="#size70">Khăn Tơ Tằm 70</a>
+            <a href="#size90">Khăn Tơ Tằm 90</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section id="size53" class="gallery-section">
+            <h2 class="section-title">Khăn Tơ Tằm Kích Thước 53</h2>
+            <div class="image-grid" id="grid53">
+                </div>
+        </section>
+
+        <section id="size70" class="gallery-section">
+            <h2 class="section-title">Khăn Tơ Tằm Kích Thước 70</h2>
+            <div class="image-grid" id="grid70">
+                </div>
+        </section>
+
+        <section id="size90" class="gallery-section">
+            <h2 class="section-title">Khăn Tơ Tằm Kích Thước 90</h2>
+            <div class="image-grid" id="grid90">
+                </div>
+        </section>
+
+    </main>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-btn">&times;</span>
+        <img id="lightboxImg" src="" alt="Full Size">
+    </div>
+    <div id="footer-container"></div>
+    <script src="../../../Global/global.js"></script>
+<script>
+        function loadGallery() {
+            const grids = {
+                'grid53': 36,
+                'grid70': 12,
+                'grid90': 0
+            };
+
+            for (let id in grids) {
+                const container = document.getElementById(id);
+                const count = grids[id];
+                const sizeTag = id.replace('grid', ''); // Lấy ra 53, 70 hoặc 90
+
+                for (let i = 1; i <= count; i++) {
+                    const img = document.createElement('img');
+                    // Bạn cần đặt tên ảnh là khan53-1.jpg, khan53-2.jpg... để khớp logic này
+                    img.src = `/DanhSachSanPham/Khan/KhanToTam/ktt${sizeTag}/anh (${i}).jpg`; 
+                    img.className = 'grid-item';
+                    img.alt = `Khăn tơ tằm ${sizeTag} mẫu ${i}`;
+                    
+                    // Khi bấm vào sẽ gọi hàm mở Lightbox
+                    img.onclick = function() { openLightbox(this.src); };
+                    
+                    container.appendChild(img);
+                }
+            }
+        }
+
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightboxImg');
+            lb.style.display = 'flex';
+            lbImg.src = src;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Chạy hàm khi trang tải xong
+        window.onload = loadGallery;
+    </script>
+</body>
+</html>
