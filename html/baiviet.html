@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vòng Tròn Xanh - Chuyện Của Chúng Tôi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <style>
+        :root {
+            --primary-green: #3E6B27; /* Xanh lá cây đậm */
+            --light-green: #E8EED8; /* Xanh lá nhạt nền */
+            --text-dark: #333333;
+            --text-gray: #777777;
+            --border-color: #DDDDDD;
+            --font-main: 'Montserrat', sans-serif;
+            --font-script: 'Dancing Script', cursive;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background-color: #FFFFFF;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Loại bỏ gạch chân và màu mặc định của thẻ a */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 1. KHỐI BÀI VIẾT NỔI BẬT NHẤT (HERO BANNER) */
+        .hero-section {
+            display: flex;
+            flex-direction: row; /* Desktop chia cột */
+            margin: 40px 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            width: 60%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            width: 40%;
+            background-color: var(--primary-green);
+            color: #FFFFFF;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-badge {
+            background-color: #E8EED8;
+            color: var(--primary-green);
+            font-weight: 600;
+            font-size: 14px;
+            padding: 4px 12px;
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-family: var(--font-script);
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-desc {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-outline-white {
+            align-self: flex-start;
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-section:hover .btn-outline-white {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        /* 2. CÁC DẢI BÀI VIẾT (CAROUSEL) */
+        .category-section {
+            margin: 50px 0;
+            position: relative;
+        }
+
+        /* Nền xanh nhạt cho section Bài viết nổi bật */
+        .bg-light-green {
+            background-color: var(--light-green);
+            padding: 40px 0;
+            border-radius: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            color: var(--primary-green);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .btn-view-more {
+            background: transparent;
+            border: 1px solid var(--text-gray);
+            color: var(--text-gray);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+
+        .btn-view-more:hover {
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        /* Vùng cuộn ngang */
+        .slider-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Ẩn thanh cuộn Firefox */
+            -ms-overflow-style: none; /* Ẩn thanh cuộn IE */
+            padding-bottom: 10px;
+            scroll-behavior: smooth;
+        }
+
+        .card-slider::-webkit-scrollbar {
+            display: none; /* Ẩn thanh cuộn Chrome/Safari */
+        }
+
+        .article-card {
+            flex: 0 0 calc(33.333% - 14px); /* Desktop hiện 3 thẻ */
+            scroll-snap-align: start;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            color: var(--primary-green);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Cắt chữ nếu quá dài */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-desc {
+            color: var(--text-gray);
+            font-size: 13px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Nút mũi tên điều hướng Slider trên Desktop */
+        .slider-arrow {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            z-index: 10;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+        
+        .slider-arrow:hover { color: var(--primary-green); border-color: var(--primary-green); }
+        .arrow-prev { left: -20px; }
+        .arrow-next { right: -20px; }
+
+        /* RESPONSIVE CHO ĐIỆN THOẠI */
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column; /* Chuyển thành hàng dọc trên Mobile */
+            }
+            .hero-image, .hero-content {
+                width: 100%;
+            }
+            .hero-image {
+                height: 250px;
+            }
+            .hero-content {
+                padding: 30px 20px;
+            }
+            .hero-title {
+                font-size: 42px;
+            }
+            
+            .article-card {
+                flex: 0 0 80%; /* Thẻ trên mobile chỉ chiếm 80% để lộ thẻ tiếp theo ra */
+            }
+            
+            /* Ẩn mũi tên trên điện thoại vì đã có thể vuốt bằng tay */
+            .slider-arrow {
+                display: none;
+            }
+            
+            .bg-light-green {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="header-container"></div>
+
+<div class="container">
+    <a href="trang-chi-tiet-du-an.html" class="hero-section">
+        <img src="../images/BaiViet/main/chude.jpg" alt="Rừng An Lành" class="hero-image">
+        <div class="hero-content">
+            <span class="hero-badge">Dự án Sen hạ</span>
+            <h2 class="hero-title">Sản phẩm mới</h2>
+            <p class="hero-desc">Hãy cùng chúng tôi khám phá bộ sản phẩm mới được thiết kế đặc biệt đầy đủ và đồng bộ. Với chủ đề Sen màu Hạ, mang sắc xanh đặc biệt của Vòng Tròn Xanh.</p>
+            <div class="btn-outline-white">Đọc thêm <span>›</span></div>
+        </div>
+    </a>
+
+    <section class="category-section bg-light-green">
+        <div class="section-header">
+            <h3 class="section-title" style="text-align: center; width: 100%;">Bài Viết Nổi Bật</h3>
+        </div>
+        <div class="slider-wrapper">
+            <button class="slider-arrow arrow-prev" onclick="scrollSlider('slider1', -300)">‹</button>
+            <div class="card-slider" id="slider1">
+                <a href="trang-chi-tiet-bai-1.html" class="article-card">
+                    <img src="../images/BaiViet/main/anh001.jpg" alt="Tin 1">
+                    <h4 class="card-title">Hũ Chanh Sành Thực Dưỡng Cổ Truyền</h4>
+                </a>
+                <a href="trang-chi-tiet-bai-2.html" class="article-card">
+                    <img src="../images/BaiViet/main/anh002.jpg" alt="Tin 2">
+                    <h4 class="card-title">Nến thơm hương liệu tự nhiên, bạn chọn gì cho hôm nay?</h4>
+                </a>
+                <a href="trang-chi-tiet-bai-3.html" class="article-card">
+                    <img src="../images/BaiViet/main/anh003.jpg" alt="Tin 3">
+                    <h4 class="card-title">Lựa chọn công nghệ là hướng đi bền vững trong thị trường tiêu dùng</h4>
+                </a>
+                <a href="trang-chi-tiet-bai-4.html" class="article-card">
+                    <img src="../images/BaiViet/main/anh003.jpg" alt="Tin 3">
+                    <h4 class="card-title">Lựa chọn công nghệ là hướng đi bền vững trong thị trường tiêu dùng</h4>
+                </a>
+                <a href="trang-chi-tiet-bai-5.html" class="article-card">
+                    <img src="../images/BaiViet/main/anh003.jpg" alt="Tin 3">
+                    <h4 class="card-title">Lựa chọn công nghệ là hướng đi bền vững trong thị trường tiêu dùng</h4>
+                </a>
+            </div>
+            <button class="slider-arrow arrow-next" onclick="scrollSlider('slider1', 300)">›</button>
+        </div>
+    </section>
+
+    <section class="category-section">
+        <div class="section-header">
+            <h3 class="section-title">Tin Tức</h3>
+            <button class="btn-view-more">Xem thêm <span>›</span></button>
+        </div>
+        <div class="slider-wrapper">
+            <button class="slider-arrow arrow-prev" onclick="scrollSlider('slider2', -300)">‹</button>
+            <div class="card-slider" id="slider2">
+                <a href="trang-tin-tuc-1.html" class="article-card">
+                    <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&q=80&w=800" alt="Tin tức 1">
+                    <h4 class="card-title">Thông Báo Thay Đổi Bao Bì Sản Phẩm Son Dưỡng</h4>
+                    <p class="card-desc">Bao bì mới được nâng cấp diện mạo thanh lịch hơn và thân thiện với môi trường.</p>
+                </a>
+                <a href="trang-tin-tuc-2.html" class="article-card">
+                    <img src="https://images.unsplash.com/photo-1541888014561-eb330c6aeb85?auto=format&fit=crop&q=80&w=800" alt="Tin tức 2">
+                    <h4 class="card-title">Thu trái ngọt sau 10 năm theo đuổi giá trị Lành và Thật</h4>
+                    <p class="card-desc">Nhìn lại chặng đường 10 năm không ngừng nỗ lực mang lại giá trị thực cho cộng đồng.</p>
+                </a>
+                <a href="trang-tin-tuc-3.html" class="article-card">
+                    <img src="https://images.unsplash.com/photo-1561489401-fc2876ced162?auto=format&fit=crop&q=80&w=800" alt="Tin tức 3">
+                    <h4 class="card-title">Được vinh danh tại Hội nghị CSR & ESG Toàn cầu 2025</h4>
+                    <p class="card-desc">Sự ghi nhận cho những nỗ lực phát triển bền vững và trách nhiệm xã hội.</p>
+                </a>
+            </div>
+            <button class="slider-arrow arrow-next" onclick="scrollSlider('slider2', 300)">›</button>
+        </div>
+    </section>
+
+    <section class="category-section">
+        <div class="section-header">
+            <h3 class="section-title">Chăm Sóc Da</h3>
+            <button class="btn-view-more">Xem thêm <span>›</span></button>
+        </div>
+        <div class="slider-wrapper">
+            <button class="slider-arrow arrow-prev" onclick="scrollSlider('slider3', -300)">‹</button>
+            <div class="card-slider" id="slider3">
+                <a href="trang-cham-soc-da.html" class="article-card">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=800" alt="Chăm sóc 1">
+                    <h4 class="card-title">Nên Uống Viên Trắng Da Hay Collagen Thì Tốt Hơn?</h4>
+                    <p class="card-desc">Nên uống viên trắng da hay collagen là câu hỏi mà nhiều chị em thắc mắc. Mỗi viên uống đều có công dụng riêng.</p>
+                </a>
+            </div>
+            <button class="slider-arrow arrow-next" onclick="scrollSlider('slider3', 300)">›</button>
+        </div>
+    </section>
+</div>
+
+<div id="footer-container"></div>
+
+<script src="../js/global.js"></script>
+
+<script>
+    // Xử lý mũi tên trượt ngang (Carousel)
+    function scrollSlider(sliderId, distance) {
+        const slider = document.getElementById(sliderId);
+        slider.scrollBy({ left: distance, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
