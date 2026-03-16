@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victory | Dấu Ấn Tự Hào - Quà Tặng Đẳng Cấp</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --primary-gold: #D4AF37; /* Vàng ánh kim */
+            --dark-gold: #996515; /* Vàng đồng thẫm */
+            --light-gold: #FDF9E3; /* Vàng nhạt hoàng gia cho nền */
+            --text-dark: #2C2825;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gold);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* --- Phần Giới Thiệu --- */
+        .intro-section {
+            text-align: center;
+            padding: 5rem 1.5rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-section h1 {
+            color: var(--dark-gold);
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.3);
+        }
+
+        .intro-section h2 {
+            color: var(--primary-gold);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: #4a453f;
+            line-height: 1.9;
+            background: #FFFFFF;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+
+        .intro-section p::before {
+            content: '★';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            background: var(--light-gold);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- Bố Cục Tỷ Lệ Vàng (Golden Ratio Grid cho 3 ảnh) --- */
+        .golden-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr; /* Cột trái to hơn cột phải */
+            grid-template-rows: 1fr 1fr; /* 2 hàng ngang bằng nhau */
+            gap: 20px;
+            max-width: 1200px;
+            height: 75vh;
+            min-height: 500px;
+            margin: 0 auto 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .grid-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.5s ease;
+        }
+
+        /* Gán vị trí cho từng ảnh */
+        .item-main {
+            grid-row: 1 / span 2; /* Ảnh chính trải dài 2 hàng */
+        }
+        .item-sub-1 {
+            grid-column: 2;
+            grid-row: 1;
+        }
+        .item-sub-2 {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4); /* Hào quang vàng */
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Lớp phủ vàng óng */
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(153, 101, 21, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .grid-item:hover .grid-overlay {
+            opacity: 1;
+        }
+
+        .grid-overlay h3 {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .item-sub-1 .grid-overlay h3, 
+        .item-sub-2 .grid-overlay h3 {
+            font-size: 1.4rem; /* Chữ nhỏ hơn cho ảnh phụ */
+        }
+
+        .grid-overlay p {
+            color: var(--text-light);
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .grid-item:hover .grid-overlay h3,
+        .grid-item:hover .grid-overlay p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .grid-item:hover .grid-overlay p {
+            transition-delay: 0.1s;
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .golden-grid {
+                grid-template-columns: 1fr; /* Chuyển thành 1 cột */
+                grid-template-rows: auto auto auto;
+                height: auto;
+            }
+            .item-main {
+                grid-row: auto;
+                height: 50vh;
+            }
+            .item-sub-1, .item-sub-2 {
+                grid-column: 1;
+                grid-row: auto;
+                height: 35vh;
+            }
+        }
+
+        /* --- Nút Quay Lại --- */
+        .action-area {
+            text-align: center;
+            padding: 1rem 0 4rem;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--dark-gold);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(153, 101, 21, 0.2);
+        }
+
+        .btn-back:hover {
+            background-color: var(--primary-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- Khu Vực Bài Viết Khác --- */
+        .related-section {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+        }
+
+        .related-title {
+            text-align: center;
+            color: var(--dark-gold);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .related-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-gold);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .related-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary-gold);
+        }
+
+        .related-card-info {
+            padding: 1.5rem;
+        }
+
+        .related-card-info h4 {
+            color: var(--dark-gold);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card-info p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- Lightbox --- */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 24, 20, 0.95); /* Nền đen ám vàng */
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        .lightbox img {
+            max-width: 90%; max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+        }
+        .lightbox-close {
+            position: absolute; top: 25px; right: 35px;
+            color: white; font-size: 45px; cursor: pointer;
+            transition: color 0.3s;
+        }
+        .lightbox-close:hover { color: var(--primary-gold); }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <section class="intro-section">
+        <h1>Victory</h1>
+        <h2>Tinh Hoa Chiến Thắng</h2>
+        <p>
+            Lấy cảm hứng từ ánh hào quang rực rỡ của thành công, bộ quà tặng Victory được Vòng Tròn Xanh chế tác như một dấn ấn tự hào, ghi nhận những cột mốc vinh quang và những đóng góp không ngừng nghỉ. Sắc vàng vương giả kết hợp cùng sự tỉ mỉ trong từng đường nét biến mỗi set quà thành một chiếc cúp lưu niệm tinh tế, thay bạn vinh danh và tri ân những đối tác, nhân sự xuất sắc nhất.
+        </p>
+    </section>
+
+    <main class="golden-grid">
+        <div class="grid-item item-main" onclick="openLightbox('../images/BaiViet/victory/anh (1).jpg')">
+            <img src="../images/BaiViet/victory/anh (1).jpg" alt="Quà tặng Victory 1">
+            <div class="grid-overlay">
+                <h3>Vinh Quang Tỏa Sáng</h3>
+                <p>Khẳng định vị thế và dấu ấn của sự thành công vượt bậc.</p>
+            </div>
+        </div>
+
+        <div class="grid-item item-sub-1" onclick="openLightbox('../images/BaiViet/victory/anh (2).jpg')">
+            <img src="../images/BaiViet/victory/anh (2).jpg" alt="Quà tặng Victory 2">
+            <div class="grid-overlay">
+                <h3>Đẳng Cấp Vương Giả</h3>
+                <p>Nâng niu giá trị trong từng nếp gấp tỉ mỉ.</p>
+            </div>
+        </div>
+
+        <div class="grid-item item-sub-2" onclick="openLightbox('../images/BaiViet/victory/anh (3).jpg')">
+            <img src="../images/BaiViet/victory/anh (3).jpg" alt="Quà tặng Victory 3">
+            <div class="grid-overlay">
+                <h3>Hương Thơm Kiêu Hãnh</h3>
+                <p>Lưu giữ trọn vẹn khoảnh khắc tự hào vô giá.</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="action-area">
+        <a href="../html/baiviet.html" class="btn-back">← Quay Lại Trang Bài Viết</a>
+    </div>
+
+    <section class="related-section">
+        <h2 class="related-title">Khám Phá Các Dự Án Khác</h2>
+        <div class="related-grid">
+            
+            <a href="sunproperty.html" class="related-card">
+                <img src="../images/BaiViet/sunproperty/anh (1).jpg" alt="Dự án Sun Property" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Sun Property - Ánh Dương Tỏa Sáng</h4>
+                    <p>Bản giao hưởng ngọt ngào của nghệ thuật và lòng trân trọng gửi đến phái đẹp nhân ngày 8/3.</p>
+                </div>
+            </a>
+
+            <a href="hdbank.html" class="related-card">
+                <img src="../images/BaiViet/hdbank/anh (1).jpg" alt="Dự án HDBank" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>HDBank - Tri Ân Phái Đẹp</h4>
+                    <p>Sắc vàng rạng rỡ và ấm áp thay lời tri ân gửi đến một nửa thế giới nhân ngày 8/3.</p>
+                </div>
+            </a>
+
+            <a href="timesschool.html" class="related-card">
+                <img src="../images/BaiViet/timesschool/anh (1).jpg" alt="Dự án Times School" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Times School - Sắc Xanh Ngập Tràn</h4>
+                    <p>Món quà trân trọng gửi trao đến những "người lái đò" tận tụy vì sự nghiệp ươm mầm tương lai.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="close-lightbox">&times;</span>
+        <img src="" alt="Phóng to" id="lightbox-img">
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+    <script>
+        // --- Xử lý Lightbox ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

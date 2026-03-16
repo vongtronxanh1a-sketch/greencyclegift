@@ -456,3 +456,8 @@ h2.section-title {
         display: block; /* Hoặc display: flex tùy theo cấu trúc của bạn */
     }
 }
+
+/* Đổi màu nền Header trên điện thoại */
+    header, .header, #header-container { 
+        background-color: var(--light-green )!important; /* Thay #3b5d2b bằng mã màu bạn muốn */
+    }

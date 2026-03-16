@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vietinbank | Tri Ân Phái Đẹp 8/3</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --primary-green: #0A5C36; /* Xanh lá Vietinbank */
+            --accent-gold: #D4AF37; /* Vàng kim */
+            --bg-light: #F4F8F5; 
+            --text-dark: #1A3326;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* --- Phần Giới Thiệu --- */
+        .intro-section {
+            text-align: center;
+            padding: 5rem 1.5rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-section h1 {
+            color: var(--primary-green);
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro-section h2 {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: #384d41;
+            line-height: 1.9;
+            background: #FFFFFF;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(10, 92, 54, 0.08);
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        /* --- Grid 3D Art Gallery --- */
+        .art-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto 5rem auto;
+            padding: 0 2rem;
+            perspective: 1500px; /* Khởi tạo không gian 3D */
+        }
+
+        /* Thẻ chứa ảnh (Khung tranh) */
+        .art-card {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 5; /* Tỷ lệ khung tranh dọc sang trọng */
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(10, 92, 54, 0.3));
+            padding: 10px; /* Tạo viền mỏng bo quanh ảnh */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+        }
+
+        /* Bức ảnh bên trong */
+        .art-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            transform: translateZ(30px); /* Đẩy ảnh nổi lên khỏi khung nền */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            pointer-events: none; /* Không bắt sự kiện chuột trên ảnh, chỉ bắt trên khung */
+        }
+
+        /* Hiệu ứng viền sáng chói khi di chuột */
+        .art-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: border-color 0.4s ease;
+            transform: translateZ(10px);
+            pointer-events: none;
+        }
+
+        .art-card:hover {
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.4);
+        }
+
+        .art-card:hover::after {
+            border-color: var(--accent-gold);
+        }
+
+        /* Ảnh 13 choán ngang ở cuối lưới */
+        .art-card:nth-child(13) {
+            grid-column: 1 / -1;
+            aspect-ratio: 21 / 9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .art-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+            .art-card:nth-child(13) {
+                aspect-ratio: 16 / 9;
+            }
+        }
+
+        /* --- Nút Quay Lại --- */
+        .action-area {
+            text-align: center;
+            padding: 2rem 0 4rem;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary-green);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2);
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* --- Khu Vực Bài Viết Khác --- */
+        .related-section {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+        }
+
+        .related-title {
+            text-align: center;
+            color: var(--primary-green);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .related-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(10, 92, 54, 0.15);
+        }
+
+        .related-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .related-card-info {
+            padding: 1.5rem;
+        }
+
+        .related-card-info h4 {
+            color: var(--primary-green);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card-info p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- Lightbox Xem Ảnh To --- */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 25, 15, 0.95);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        .lightbox img {
+            max-width: 90%; max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        .lightbox-close {
+            position: absolute; top: 25px; right: 35px;
+            color: white; font-size: 45px; cursor: pointer;
+            transition: color 0.3s;
+        }
+        .lightbox-close:hover { color: var(--accent-gold); }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <section class="intro-section">
+        <h1>Nét Đẹp Rạng Ngời</h1>
+        <h2>Vietinbank | Tri Ân Phái Đẹp 8/3</h2>
+        <p>
+            Tôn vinh vẻ đẹp rạng rỡ và bản lĩnh của những bóng hồng Vietinbank nhân ngày Quốc tế Phụ nữ. Sự kết hợp tinh tế giữa sắc xanh của niềm tin, hy vọng cùng ánh vàng kiêu hãnh đã tạo nên một bộ sưu tập quà tặng đẳng cấp. Mỗi khung hình dưới đây là một lăng kính lưu giữ vẹn nguyên vẻ đẹp của sự tri ân do Vòng Tròn Xanh dày công chuẩn bị.
+        </p>
+    </section>
+
+    <main class="art-gallery" id="gallery">
+        </main>
+
+    <div class="action-area">
+        <a href="../html/baiviet.html" class="btn-back">← Quay Lại Trang Bài Viết</a>
+    </div>
+
+    <section class="related-section">
+        <h2 class="related-title">Khám Phá Các Dự Án Khác</h2>
+        <div class="related-grid">
+            
+            <a href="victory.html" class="related-card">
+                <img src="../images/BaiViet/victory/anh (1).jpg" alt="Dự án Victory" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Victory - Tinh Hoa Chiến Thắng</h4>
+                    <p>Sắc vàng vương giả kết hợp cùng sự tỉ mỉ ghi nhận những cột mốc vinh quang.</p>
+                </div>
+            </a>
+
+            <a href="sunproperty.html" class="related-card">
+                <img src="../images/BaiViet/sunproperty/anh (1).jpg" alt="Dự án Sun Property" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Sun Property - Ánh Dương Tỏa Sáng</h4>
+                    <p>Bản giao hưởng ngọt ngào của nghệ thuật và lòng trân trọng gửi đến phái đẹp.</p>
+                </div>
+            </a>
+
+            <a href="hdbank.html" class="related-card">
+                <img src="../images/BaiViet/hdbank/anh (1).jpg" alt="Dự án HDBank" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>HDBank - Tri Ân Phái Đẹp</h4>
+                    <p>Sắc vàng rạng rỡ và ấm áp thay lời tri ân gửi đến một nửa thế giới.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="close-lightbox">&times;</span>
+        <img src="" alt="Phóng to" id="lightbox-img">
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+    <script>
+        const gallery = document.getElementById('gallery');
+        const numImages = 13;
+
+        // Tự động tạo 13 ảnh
+        for (let i = 1; i <= numImages; i++) {
+            const card = document.createElement('div');
+            card.className = 'art-card';
+            const imgSrc = `../images/BaiViet/vietinbank/anh (${i}).jpg`;
+            
+            card.innerHTML = `<img src="${imgSrc}" alt="Vietinbank Quà Tặng ${i}">`;
+            
+            // Bấm vào ảnh mở Lightbox
+            card.addEventListener('click', () => openLightbox(imgSrc));
+            gallery.appendChild(card);
+        }
+
+        // --- HIỆU ỨNG TILT 3D TƯƠNG TÁC (3D TILT EFFECT) ---
+        const cards = document.querySelectorAll('.art-card');
+
+        cards.forEach(card => {
+            // Khi chuột di chuyển trên ảnh
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                // Xác định vị trí chuột trên thẻ ảnh
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Tính toán độ nghiêng (Tối đa 15 độ)
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const tiltX = ((y - centerY) / centerY) * -15; 
+                const tiltY = ((x - centerX) / centerX) * 15;
+
+                // Áp dụng biến đổi 3D
+                card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.05, 1.05, 1.05)`;
+            });
+
+            // Khi chuột rời khỏi ảnh, trả về vị trí phẳng ban đầu
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+
+        // --- XỬ LÝ LIGHTBOX ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

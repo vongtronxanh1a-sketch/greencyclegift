@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times School | Tri Ân Phái Đẹp 8/3</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --primary-green: #0E6655; /* Xanh ngọc lục bảo thẫm sang trọng */
+            --accent-green: #1ABC9C; /* Xanh ngọc bích tươi sáng */
+            --bg-light: #F2FDF5; /* Nền xanh nhạt thanh khiết */
+            --text-dark: #2C3E50;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* --- Phần Giới Thiệu --- */
+        .intro-section {
+            text-align: center;
+            padding: 5rem 1.5rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-section h1 {
+            color: var(--primary-green);
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro-section h2 {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: #4a5a54;
+            line-height: 1.9;
+            background: #FFFFFF;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(14, 102, 85, 0.08);
+            border-top: 4px solid var(--accent-green);
+        }
+
+        /* --- Khung Hình Song Hành (Split Screen) --- */
+        .split-gallery {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            height: 70vh; /* Chiều cao cố định trên máy tính */
+            margin: 0 auto 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .split-item {
+            flex: 1; /* Hai ảnh chia đều không gian ban đầu */
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(14, 102, 85, 0.15);
+            /* Hiệu ứng chuyển đổi kích thước mượt mà */
+            transition: flex 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Khi rê chuột vào 1 ảnh, ảnh đó to ra, ảnh kia nhỏ lại tự động */
+        .split-item:hover {
+            flex: 1.8;
+        }
+
+        .split-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .split-item:hover img {
+            transform: scale(1.05); /* Phóng to nhẹ hình bên trong */
+        }
+
+        /* Lớp phủ và nội dung chữ */
+        .split-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(14, 102, 85, 0.9) 0%, rgba(14, 102, 85, 0.2) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            opacity: 0.8;
+            transition: opacity 0.4s ease;
+        }
+
+        .split-item:hover .split-overlay {
+            opacity: 1;
+        }
+
+        .split-overlay h3 {
+            color: var(--text-light);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .split-overlay p {
+            color: var(--accent-green);
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        /* Chỉ hiện mô tả chi tiết khi hover */
+        .split-item:hover .split-overlay h3 {
+            transform: translateY(0);
+        }
+
+        .split-item:hover .split-overlay p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+
+        /* Responsive cho điện thoại: Chuyển thành xếp dọc */
+        @media (max-width: 768px) {
+            .split-gallery {
+                flex-direction: column;
+                height: 90vh;
+            }
+            .split-item {
+                flex: 1;
+            }
+            .split-item:hover {
+                flex: 1.5; /* Mở rộng chiều dọc thay vì ngang trên mobile */
+            }
+            .split-overlay h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* --- Nút Quay Lại --- */
+        .action-area {
+            text-align: center;
+            padding: 1rem 0 4rem;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary-green);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(14, 102, 85, 0.2);
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 188, 156, 0.3);
+        }
+
+        /* --- Khu Vực Bài Viết Khác --- */
+        .related-section {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+        }
+
+        .related-title {
+            text-align: center;
+            color: var(--primary-green);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .related-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-green);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(14, 102, 85, 0.15);
+        }
+
+        .related-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-green);
+        }
+
+        .related-card-info {
+            padding: 1.5rem;
+        }
+
+        .related-card-info h4 {
+            color: var(--primary-green);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card-info p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* --- Lightbox --- */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(14, 102, 85, 0.95);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        .lightbox img {
+            max-width: 90%; max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(26, 188, 156, 0.3);
+        }
+        .lightbox-close {
+            position: absolute; top: 25px; right: 35px;
+            color: white; font-size: 45px; cursor: pointer;
+            transition: color 0.3s;
+        }
+        .lightbox-close:hover { color: var(--accent-green); }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <section class="intro-section">
+        <h1>Sắc Xanh Ngập Tràn</h1>
+        <h2>Times School x Vòng Tròn Xanh</h2>
+        <p>
+            Nhân dịp Quốc tế Phụ nữ 8/3, Times School kết hợp cùng Vòng Tròn Xanh mang đến bộ sưu tập quà tặng mang đậm sắc xanh tươi mới và tràn đầy sức sống. Mỗi món quà được chuẩn bị bằng cả tâm huyết, thay lời tri ân sâu sắc gửi đến những nữ giáo viên, cán bộ nhân viên - những "người gieo hạt" tuyệt vời đã luôn tận tâm cống hiến vì sự nghiệp giáo dục.
+        </p>
+    </section>
+
+    <main class="split-gallery">
+        <div class="split-item" onclick="openLightbox('../images/BaiViet/timesschool/anh (1).jpg')">
+            <img src="../images/BaiViet/timesschool/anh (1).jpg" alt="Quà tặng Times School 1">
+            <div class="split-overlay">
+                <h3>Gieo Mầm Tri Thức</h3>
+                <p>Món quà trân trọng gửi trao đến những người lái đò tận tụy.</p>
+            </div>
+        </div>
+
+        <div class="split-item" onclick="openLightbox('../images/BaiViet/timesschool/anh (2).jpg')">
+            <img src="../images/BaiViet/timesschool/anh (2).jpg" alt="Quà tặng Times School 2">
+            <div class="split-overlay">
+                <h3>Tỏa Sáng Tương Lai</h3>
+                <p>Nét đẹp của sự cống hiến được nâng niu và tôn vinh trọn vẹn.</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="action-area">
+        <a href="../html/baiviet.html" class="btn-back">← Quay Lại Trang Bài Viết</a>
+    </div>
+
+    <section class="related-section">
+        <h2 class="related-title">Khám Phá Các Dự Án Khác</h2>
+        <div class="related-grid">
+            
+            <a href="artermit.html" class="related-card">
+                <img src="../images/BaiViet/artermit/anh (13).jpg" alt="Dự án Artermit" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Artermit - Quà Tặng Độc Bản</h4>
+                    <p>Nghệ thuật trao gửi thành ý thông qua sự kết hợp tinh tế giữa lụa là và hương thơm.</p>
+                </div>
+            </a>
+
+            <a href="sunproperty.html" class="related-card">
+                <img src="../images/BaiViet/sunproperty/anh (1).jpg" alt="Dự án Sun Property" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Sun Property - Ánh Dương Tỏa Sáng</h4>
+                    <p>Bản giao hưởng ngọt ngào của nghệ thuật và lòng trân trọng gửi đến phái đẹp nhân ngày 8/3.</p>
+                </div>
+            </a>
+
+            <a href="hdbank.html" class="related-card">
+                <img src="../images/BaiViet/hdbank/anh (1).jpg" alt="Dự án HDBank" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>HDBank - Tri Ân Phái Đẹp</h4>
+                    <p>Sắc vàng rạng rỡ và ấm áp thay lời tri ân gửi đến một nửa thế giới nhân ngày 8/3.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="close-lightbox">&times;</span>
+        <img src="" alt="Phóng to" id="lightbox-img">
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+    <script>
+        // --- Xử lý Lightbox ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

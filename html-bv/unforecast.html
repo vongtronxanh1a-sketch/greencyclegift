@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unforecast Project | Tầm Nhìn Đột Phá</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --primary-yellow: #F39C12; /* Vàng năng lượng / Amber */
+            --light-yellow: #FFF9E6; /* Vàng nhạt cho nền */
+            --dark-bg: #1A1A1A; /* Đen tuyền tương phản */
+            --text-dark: #222222;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-yellow);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* --- Phần Giới Thiệu --- */
+        .intro-section {
+            text-align: center;
+            padding: 6rem 1.5rem 4rem;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .intro-section h1 {
+            color: var(--dark-bg);
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .intro-section h1 span {
+            color: var(--primary-yellow);
+        }
+
+        .intro-section h2 {
+            color: #555;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: #444;
+            background: var(--text-light);
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(243, 156, 18, 0.1);
+            border-left: 6px solid var(--primary-yellow);
+        }
+
+        /* --- Không Gian Bento Grid (4 Ảnh) --- */
+        .bento-wrapper {
+            max-width: 1200px;
+            margin: 0 auto 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 350px);
+            gap: 20px;
+        }
+
+        .bento-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--dark-bg);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .bento-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Bố cục đường chéo: To - Nhỏ, Nhỏ - To */
+        .bento-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; } /* Ảnh 1: Trải dài 2 cột bên trái trên */
+        .bento-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 2; } /* Ảnh 2: 1 cột góc phải trên */
+        .bento-item:nth-child(3) { grid-column: 1 / 2; grid-row: 2 / 3; } /* Ảnh 3: 1 cột góc trái dưới */
+        .bento-item:nth-child(4) { grid-column: 2 / 4; grid-row: 2 / 3; } /* Ảnh 4: Trải dài 2 cột bên phải dưới */
+
+        .bento-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease, filter 0.5s ease;
+            filter: brightness(0.9);
+        }
+
+        .bento-item:hover img {
+            transform: scale(1.08);
+            filter: brightness(1.1);
+        }
+
+        /* Lớp phủ thông tin trượt từ dưới lên */
+        .bento-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.95), rgba(243, 156, 18, 0.4) 50%, transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .bento-item:hover .bento-overlay {
+            opacity: 1;
+        }
+
+        .bento-overlay h3 {
+            color: var(--primary-yellow);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .bento-item:nth-child(2) .bento-overlay h3,
+        .bento-item:nth-child(3) .bento-overlay h3 {
+            font-size: 1.4rem; /* Chữ nhỏ hơn cho các ô hẹp */
+        }
+
+        .bento-overlay p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            font-weight: 300;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            opacity: 0;
+        }
+
+        .bento-item:hover .bento-overlay h3 {
+            transform: translateY(0);
+        }
+
+        .bento-item:hover .bento-overlay p {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.1s;
+        }
+
+        /* Responsive cho thiết bị di động */
+        @media (max-width: 992px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                height: auto;
+            }
+            .bento-item {
+                grid-column: 1 / -1 !important;
+                grid-row: auto !important;
+                height: 300px;
+            }
+        }
+
+        /* --- Nút Quay Lại --- */
+        .action-area {
+            text-align: center;
+            padding: 0 0 5rem;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--dark-bg);
+            color: var(--primary-yellow);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid var(--dark-bg);
+        }
+
+        .btn-back:hover {
+            background-color: var(--primary-yellow);
+            color: var(--dark-bg);
+            border-color: var(--primary-yellow);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.3);
+        }
+
+        /* --- Khu Vực Bài Viết Khác --- */
+        .related-section {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+        }
+
+        .related-title {
+            text-align: center;
+            color: var(--dark-bg);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            font-weight: 800;
+        }
+
+        .related-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-yellow);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.2);
+        }
+
+        .related-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--primary-yellow);
+        }
+
+        .related-card-info {
+            padding: 1.5rem;
+        }
+
+        .related-card-info h4 {
+            color: var(--dark-bg);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .related-card-info p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- Lightbox --- */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        .lightbox img {
+            max-width: 90%; max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(243, 156, 18, 0.3);
+            border: 2px solid var(--primary-yellow);
+        }
+        .lightbox-close {
+            position: absolute; top: 25px; right: 35px;
+            color: var(--primary-yellow); font-size: 45px; cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .lightbox-close:hover { transform: rotate(90deg) scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <section class="intro-section">
+        <h1>Unforecast <span>Project</span></h1>
+        <h2>Tầm Nhìn Đột Phá - Tương Lai Khai Mở</h2>
+        <p>
+            Vượt qua mọi giới hạn của những dự đoán thông thường, Unforecast Project là bản giao hưởng của sự sáng tạo, năng lượng và tư duy tiên phong. Với tông màu vàng rực rỡ mang ý nghĩa của ánh sáng và sự thịnh vượng, Vòng Tròn Xanh đã tinh tế thiết kế những set quà tặng độc bản, trở thành cầu nối vững chắc vinh danh những cá nhân và tập thể luôn sẵn sàng kiến tạo nên một tương lai khác biệt.
+        </p>
+    </section>
+
+    <main class="bento-wrapper">
+        <div class="bento-grid" id="gallery">
+            <div class="bento-item" onclick="openLightbox('../images/BaiViet/unforecast/anh (1).jpg')">
+                <img src="../images/BaiViet/unforecast/anh (1).jpg" alt="Unforecast Project 1">
+                <div class="bento-overlay">
+                    <h3>Khởi Nguồn Sáng Tạo</h3>
+                    <p>Đánh thức tiềm năng và nguồn năng lượng vô tận.</p>
+                </div>
+            </div>
+
+            <div class="bento-item" onclick="openLightbox('../images/BaiViet/unforecast/anh (2).jpg')">
+                <img src="../images/BaiViet/unforecast/anh (2).jpg" alt="Unforecast Project 2">
+                <div class="bento-overlay">
+                    <h3>Bứt Phá</h3>
+                    <p>Vượt qua mọi rào cản để kiến tạo sự khác biệt.</p>
+                </div>
+            </div>
+
+            <div class="bento-item" onclick="openLightbox('../images/BaiViet/unforecast/anh (3).jpg')">
+                <img src="../images/BaiViet/unforecast/anh (3).jpg" alt="Unforecast Project 3">
+                <div class="bento-overlay">
+                    <h3>Lan Tỏa</h3>
+                    <p>Sức nóng của ánh sáng và sự nhiệt huyết.</p>
+                </div>
+            </div>
+
+            <div class="bento-item" onclick="openLightbox('../images/BaiViet/unforecast/anh (4).jpg')">
+                <img src="../images/BaiViet/unforecast/anh (4).jpg" alt="Unforecast Project 4">
+                <div class="bento-overlay">
+                    <h3>Dấu Ấn Vượt Thời Gian</h3>
+                    <p>Sự tri ân sâu sắc, ghi nhận những cột mốc phát triển rực rỡ.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="action-area">
+        <a href="baiviet.html" class="btn-back">← Quay Lại Trang Bài Viết</a>
+    </div>
+
+    <section class="related-section">
+        <h2 class="related-title">Khám Phá Các Dự Án Khác</h2>
+        <div class="related-grid">
+            
+            <a href="senmuaha.html" class="related-card">
+                <img src="../images/BaiViet/senmuaha/anh (1).jpg" alt="Dự án Sen Mùa Hạ" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Sen Mùa Hạ - Tuyệt Tác Quà Tặng</h4>
+                    <p>Sự kết hợp giữa xanh ngọc và hồng phớt mang đến cảm giác thanh tao, an yên.</p>
+                </div>
+            </a>
+
+            <a href="thanhma.html" class="related-card">
+                <img src="../images/BaiViet/thanhma/anh (1).jpg" alt="Dự án Thanh Mã" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Thanh Mã Bính Ngọ 2026</h4>
+                    <p>Bộ sưu tập mang biểu tượng của loài ngựa dũng mãnh trên nền xanh trắng thanh tao.</p>
+                </div>
+            </a>
+
+            <a href="victory.html" class="related-card">
+                <img src="../images/BaiViet/victory/anh (1).jpg" alt="Dự án Victory" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Victory - Tinh Hoa Chiến Thắng</h4>
+                    <p>Sắc vàng vương giả kết hợp cùng sự tỉ mỉ ghi nhận những cột mốc vinh quang.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="close-lightbox">&times;</span>
+        <img src="" alt="Phóng to" id="lightbox-img">
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+    <script>
+        // --- HIỆU ỨNG HIỂN THỊ KHI CUỘN TRANG ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('show');
+                    }, index * 150); // Độ trễ xuất hiện từng ảnh
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.bento-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // --- XỬ LÝ LIGHTBOX ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

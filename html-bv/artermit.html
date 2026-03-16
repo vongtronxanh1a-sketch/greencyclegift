@@ -23,166 +23,247 @@
         }
 
         body {
-            background-color: #fff9fa; /* Nền đỏ ấm áp */
+            background-color: var(--bg-light);
             color: var(--text-dark);
-            line-height: 1.6;
             overflow-x: hidden;
+            line-height: 1.7;
         }
 
-        /* Header / Hero Section */
-        header {
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--accent-red) 100%);
-            color: var(--text-light);
-            text-align: center;
-            padding: 4rem 1rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        /* Introduction */
+        /* --- Phần Giới Thiệu --- */
         .intro-section {
             text-align: center;
-            padding: 3rem 1.5rem;
+            padding: 5rem 1.5rem 3rem;
             max-width: 900px;
             margin: 0 auto;
         }
 
+        .intro-section h1 {
+            color: var(--primary-red);
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro-section h2 {
+            color: var(--accent-red);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
         .intro-section p {
             font-size: 1.15rem;
-            color: #555;
-            font-style: italic;
+            color: #4a4a4a;
+            line-height: 1.9;
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.08);
+            border-top: 4px solid var(--accent-red);
         }
 
-        /* Gallery Grid */
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem 5%;
-            margin-bottom: 4rem;
-        }
-
-        /* Image Cards & Effects */
-        .gallery-item {
+        /* --- Slider Trượt Ngang --- */
+        .horizontal-wrapper {
+            width: 100%;
+            padding: 2rem 0 3rem;
             position: relative;
-            border-radius: 8px;
+        }
+
+        .horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            padding: 0 10vw;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+        }
+
+        .horizontal-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            flex: 0 0 75vw; 
+            height: 60vh;
+            min-height: 400px;
+            scroll-snap-align: center;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            aspect-ratio: 1 / 1;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            cursor: grab;
+            transition: transform 0.4s ease, filter 0.4s ease;
         }
 
-        /* Class để JS kích hoạt hiệu ứng xuất hiện (Fade-in) */
-        .gallery-item.show {
-            opacity: 1;
-            transform: translateY(0);
+        .card:active {
+            cursor: grabbing;
         }
 
-        .gallery-item img {
+        .horizontal-scroll:hover .card:not(:hover) {
+            filter: grayscale(40%) opacity(0.7);
+            transform: scale(0.95);
+        }
+
+        .card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            pointer-events: none; 
+            transition: transform 0.8s ease;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .card:hover img {
+            transform: scale(1.05);
         }
 
-        .gallery-item .overlay {
+        .card-content {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(139, 0, 0, 0.8));
+            padding: 2.5rem 2rem 1.5rem;
+            background: linear-gradient(to top, rgba(139, 0, 0, 0.95), transparent);
             color: var(--text-light);
-            padding: 1.5rem 1rem 1rem;
-            transform: translateY(100%);
-            transition: transform 0.4s ease;
-            text-align: center;
-        }
-
-        .gallery-item:hover .overlay {
-            transform: translateY(0);
-        }
-
-        /* Image 13 - Hiển thị đặc biệt ở cuối */
-        .gallery-item:nth-child(13) {
-            grid-column: 1 / -1; /* Trải dài toàn bộ chiều ngang */
-            aspect-ratio: 21 / 9; /* Khung hình rộng */
-        }
-
-        /* Lightbox (Modal hiển thị ảnh phóng to) */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+            transform: translateY(20px);
             opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: all 0.4s ease;
         }
 
-        .lightbox.active {
+        .card:hover .card-content {
+            transform: translateY(0);
             opacity: 1;
-            pointer-events: auto;
         }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #FFD700; /* Nhấn nhá chút vàng kim trên nền đỏ đô cho sang trọng */
         }
 
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            transition: color 0.3s ease;
+        .card-content p {
+            font-size: 1rem;
+            font-weight: 300;
         }
 
-        .lightbox-close:hover {
-            color: var(--accent-red);
+        @media (min-width: 768px) {
+            .card { flex: 0 0 35vw; height: 65vh; }
         }
 
-        /* Responsive cho điện thoại */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            .gallery-container {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 1rem;
-            }
-            .gallery-item:nth-child(13) {
-                aspect-ratio: 16 / 9;
-            }
+        @media (min-width: 1200px) {
+            .card { flex: 0 0 25vw; }
+        }
+        
+        .scroll-hint {
+            text-align: center;
+            color: var(--primary-red);
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* --- Nút Quay Lại --- */
+        .action-area {
+            text-align: center;
+            padding: 2rem 0 4rem;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary-red);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-red);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(210, 20, 58, 0.3);
+        }
+
+        /* --- Khu Vực Bài Viết Khác --- */
+        .related-section {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+        }
+
+        .related-title {
+            text-align: center;
+            color: var(--primary-red);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .related-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-red);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 0, 0, 0.15);
+        }
+
+        .related-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-red);
+        }
+
+        .related-card-info {
+            padding: 1.5rem;
+        }
+
+        .related-card-info h4 {
+            color: var(--primary-red);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card-info p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -191,94 +272,151 @@
     <div id="header-container"></div>
 
     <section class="intro-section">
-        <p style="border: 2px solid #ff4e71; padding: 1rem; background-color: #ffffff; border-radius: 8px;">
+        <h1>Artermit</h1>
+        <h2>Nghệ Thuật Trao Gửi Thành Ý</h2>
+        <p>
             Chào đón năm mới, bộ quà tặng Artermit là dấu ấn tri ân tinh tế dành riêng cho đội ngũ nhân sự, được Vòng Tròn Xanh nâng niu và cẩn trọng chuẩn bị trong từng chi tiết. Sự kết hợp hài hòa giữa nét mềm mại của khăn lụa cao cấp cùng hương thơm thư thái từ nến thơm chính là lời cảm ơn chân thành nhất, gửi gắm trọn vẹn tâm ý tới những người cộng sự đã cùng đồng hành.
         </p>
     </section>
-    <main class="gallery-container" id="gallery">
-        </main>
 
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" id="close-lightbox">&times;</span>
-        <img src="" alt="Phóng to" id="lightbox-img">
+    <div class="scroll-hint">
+        <span>← Tự động lướt hoặc Vuốt sang ngang để chiêm ngưỡng →</span>
     </div>
+
+    <main class="horizontal-wrapper">
+        <div class="horizontal-scroll" id="scroll-container">
+            <div class="card"><img src="../images/BaiViet/artermit/anh (1).jpg" alt="Quà tặng Artermit 1"><div class="card-content"><h3>Món Quà Năm Mới</h3><p>Tri ân những cống hiến không ngừng nghỉ.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (2).jpg" alt="Quà tặng Artermit 2"><div class="card-content"><h3>Sắc Đỏ May Mắn</h3><p>Khởi đầu năm mới với năng lượng tràn đầy.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (3).jpg" alt="Quà tặng Artermit 3"><div class="card-content"><h3>Hương Thơm Thư Thái</h3><p>Nến thơm mang đến sự an yên, tĩnh tại.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (4).jpg" alt="Quà tặng Artermit 4"><div class="card-content"><h3>Lụa Là Kiêu Sa</h3><p>Nét mềm mại, sang trọng nâng niu cảm xúc.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (5).jpg" alt="Quà tặng Artermit 5"><div class="card-content"><h3>Nghệ Thuật Đóng Gói</h3><p>Cẩn trọng và chỉn chu đến từng nếp gấp.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (6).jpg" alt="Quà tặng Artermit 6"><div class="card-content"><h3>Tinh Tế Từng Chi Tiết</h3><p>Sự hoàn mỹ đến từ những điều nhỏ bé nhất.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (7).jpg" alt="Quà tặng Artermit 7"><div class="card-content"><h3>Thanh Lịch & Sang Trọng</h3><p>Đẳng cấp của món quà được thiết kế độc bản.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (8).jpg" alt="Quà tặng Artermit 8"><div class="card-content"><h3>Gắn Kết Đội Ngũ</h3><p>Niềm tự hào khi cùng nhau chung bước.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (9).jpg" alt="Quà tặng Artermit 9"><div class="card-content"><h3>Gửi Trọn Tâm Ý</h3><p>Thay cho ngàn lời cảm ơn sâu sắc nhất.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (10).jpg" alt="Quà tặng Artermit 10"><div class="card-content"><h3>Dấu Ấn Artermit</h3><p>Khẳng định thương hiệu và sự trân trọng.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (11).jpg" alt="Quà tặng Artermit 11"><div class="card-content"><h3>Cảm Hứng Sáng Tạo</h3><p>Hòa quyện giữa thẩm mỹ và giá trị thiết thực.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (12).jpg" alt="Quà tặng Artermit 12"><div class="card-content"><h3>Vẻ Đẹp Hoàn Hảo</h3><p>Chinh phục mọi ánh nhìn ngay từ giây phút đầu tiên.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/artermit/anh (13).jpg" alt="Quà tặng Artermit 13"><div class="card-content"><h3>Tuyệt Tác Độc Bản</h3><p>Ghi dấu ấn mạnh mẽ và khó phai trong lòng người nhận.</p></div></div>
+        </div>
+    </main>
+
+    <div class="action-area">
+        <a href="../html/baiviet.html" class="btn-back">← Quay Lại Trang Bài Viết</a>
+    </div>
+
+    <section class="related-section">
+        <h2 class="related-title">Khám Phá Các Dự Án Khác</h2>
+        <div class="related-grid">
+            
+            <a href="sunproperty.html" class="related-card">
+                <img src="../images/BaiViet/sunproperty/anh (1).jpg" alt="Dự án Sun Property" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Sun Property - Ánh Dương Tỏa Sáng</h4>
+                    <p>Bản giao hưởng ngọt ngào của nghệ thuật và lòng trân trọng gửi đến phái đẹp nhân ngày 8/3.</p>
+                </div>
+            </a>
+
+            <a href="hdbank.html" class="related-card">
+                <img src="../images/BaiViet/hdbank/anh (1).jpg" alt="Dự án HDBank" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>HDBank - Tri Ân Phái Đẹp</h4>
+                    <p>Sắc vàng rạng rỡ và ấm áp thay lời tri ân gửi đến một nửa thế giới nhân ngày 8/3.</p>
+                </div>
+            </a>
+
+            <a href="lequydon.html" class="related-card">
+                <img src="../images/BaiViet/lequydon/anh (1).jpg" alt="Dự án Lê Quý Đôn" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Lê Quý Đôn - Kỷ Niệm 20 Năm</h4>
+                    <p>Hành trình dựng xây ngàn hoa, tri ân 20 năm ươm mầm tri thức và cống hiến.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
     <div id="footer-container"></div>
 
     <script src="../js/global.js"></script>
     <script>
-        // Mảng chứa link 13 hình ảnh (Hiện tại dùng ảnh mẫu có tone đỏ/ấm, bạn có thể thay bằng link ảnh sản phẩm thật)
-        const images = [
-            "../images/BaiViet/artermit/anh (1).jpg", // Hộp quà
-            "../images/BaiViet/artermit/anh (2).jpg", // Ruy băng đỏ
-            "../images/BaiViet/artermit/anh (3).jpg", // Nến thơm
-            "../images/BaiViet/artermit/anh (4).jpg", // Khăn lụa
-            "../images/BaiViet/artermit/anh (5).jpg", // Gói quà đỏ
-            "../images/BaiViet/artermit/anh (6).jpg", // Nến thư giãn
-            "../images/BaiViet/artermit/anh (7).jpg", // Vải lụa đỏ
-            "../images/BaiViet/artermit/anh (8).jpg", // Giỏ quà
-            "../images/BaiViet/artermit/anh (9).jpg", // Sáp nến
-            "../images/BaiViet/artermit/anh (10).jpg", // Tinh tế
-            "../images/BaiViet/artermit/anh (11).jpg", // Nghệ thuật gói
-            "../images/BaiViet/artermit/anh (12).jpg", // Nến và hoa
-            "../images/BaiViet/artermit/anh (13).jpg"  // Ảnh 13 toàn cảnh set quà (ảnh rộng)
-        ];
+        const slider = document.getElementById('scroll-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let autoPlayTimer;
 
-        const galleryContainer = document.getElementById('gallery');
-
-        // Tạo 13 phần tử ảnh
-        images.forEach((src, index) => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            
-            item.innerHTML = `
-                <img src="${src}" alt="Set quà Artermit ${index + 1}">
-                <div class="overlay">Hình ảnh ${index + 1}</div>
-            `;
-            
-            // Sự kiện mở Lightbox
-            item.addEventListener('click', () => openLightbox(src));
-            galleryContainer.appendChild(item);
+        // --- Kéo thả trượt (Drag to scroll) ---
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            slider.style.scrollSnapType = 'none'; 
+            slider.style.scrollBehavior = 'auto'; 
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            stopAutoPlay();
         });
 
-        // --- HIỆU ỨNG HIỂN THỊ KHI CUỘN TRANG (Scroll Fade-in) ---
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                    observer.unobserve(entry.target); // Chạy hiệu ứng 1 lần
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            observer.observe(item);
-        });
-
-        // --- HIỆU ỨNG LIGHTBOX (Phóng to ảnh) ---
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const closeBtn = document.getElementById('close-lightbox');
-
-        function openLightbox(src) {
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-        }
-
-        closeBtn.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target !== lightboxImg) {
-                closeLightbox();
+        slider.addEventListener('mouseleave', () => {
+            if (isDown) {
+                isDown = false;
+                resetSliderState();
             }
+            startAutoPlay(); 
         });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            resetSliderState();
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; 
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        function resetSliderState() {
+            slider.style.cursor = 'grab';
+            slider.style.scrollSnapType = 'x mandatory';
+            slider.style.scrollBehavior = 'smooth'; 
+        }
+
+        // --- Tự động chuyển ảnh (Auto-play) ---
+        function startAutoPlay() {
+            stopAutoPlay(); 
+            autoPlayTimer = setInterval(() => {
+                const cardWidth = slider.querySelector('.card').offsetWidth;
+                const gap = parseInt(window.getComputedStyle(slider).gap) || 32; 
+                const scrollAmount = cardWidth + gap;
+
+                if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+                    slider.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 3000); 
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayTimer);
+        }
+
+        slider.addEventListener('mouseenter', stopAutoPlay);
+        slider.addEventListener('touchstart', stopAutoPlay);
+        slider.addEventListener('touchend', startAutoPlay);
+
+        slider.addEventListener('wheel', (evt) => {
+            evt.preventDefault();
+            stopAutoPlay(); 
+            slider.scrollLeft += evt.deltaY;
+            clearTimeout(window.wheelTimeout);
+            window.wheelTimeout = setTimeout(startAutoPlay, 1500);
+        });
+
+        startAutoPlay();
     </script>
 </body>
 </html>

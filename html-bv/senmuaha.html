@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sen Mùa Hạ | Tuyệt Tác Quà Tặng Độc Quyền</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --lotus-green: #1B4332; /* Xanh lá sen thẫm, sang trọng */
+            --water-green: #D8F3DC; /* Xanh mặt nước trong trẻo */
+            --lotus-pink: #FFB5A7; /* Hồng cánh sen điểm xuyết */
+            --text-dark: #2D3A33;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Nền gradient mô phỏng ánh sáng chiếu xuống mặt hồ */
+            background: radial-gradient(circle at top center, #FFFFFF 0%, var(--water-green) 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* --- Phần Giới Thiệu --- */
+        .intro-section {
+            text-align: center;
+            padding: 6rem 1.5rem 4rem;
+            max-width: 950px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .intro-section h1 {
+            color: var(--lotus-green);
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 4px rgba(27, 67, 50, 0.1);
+        }
+
+        /* Chữ Sen Mùa Hạ có màu hồng cánh sen */
+        .intro-section h1 span {
+            color: var(--lotus-pink);
+        }
+
+        .intro-section h2 {
+            color: #52796F;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px); /* Hiệu ứng kính mờ Glassmorphism */
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(27, 67, 50, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- Không Gian Hồ Sen (Floating Gallery) --- */
+        .lotus-pond {
+            max-width: 1300px;
+            margin: 0 auto 6rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        /* Thẻ ảnh mang hiệu ứng nổi bồng bềnh */
+        .lotus-item {
+            position: relative;
+            border-radius: 50% 50% 10px 10px; /* Bo tròn phần trên giống hình dáng nụ sen/lá sen */
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(27, 67, 50, 0.15);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            /* Animation trôi nổi liên tục */
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Thay đổi thời gian delay để các ảnh trôi nổi không cùng nhịp */
+        .lotus-item:nth-child(even) { animation-delay: 1.5s; animation-duration: 7s; }
+        .lotus-item:nth-child(3n) { animation-delay: 0.8s; animation-duration: 5.5s; }
+        .lotus-item:nth-child(5n) { animation-delay: 2.2s; animation-duration: 6.5s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Class hiển thị khi cuộn trang */
+        .lotus-item.show {
+            opacity: 1;
+            /* Không đè transform của animation, chỉ cần opacity vì keyframe đã lo transform */
+        }
+
+        /* Phân bổ vị trí 10 ảnh trên lưới 12 cột tạo sự bất đối xứng tự nhiên */
+        .lotus-item:nth-child(1) { grid-column: 1 / 5; grid-row: 1 / 3; aspect-ratio: 3/4; }
+        .lotus-item:nth-child(2) { grid-column: 5 / 9; grid-row: 1 / 2; aspect-ratio: 4/3; }
+        .lotus-item:nth-child(3) { grid-column: 9 / 13; grid-row: 1 / 3; aspect-ratio: 3/4; }
+        .lotus-item:nth-child(4) { grid-column: 5 / 9; grid-row: 2 / 4; aspect-ratio: 3/4; }
+        .lotus-item:nth-child(5) { grid-column: 1 / 5; grid-row: 3 / 4; aspect-ratio: 4/3; }
+        .lotus-item:nth-child(6) { grid-column: 9 / 13; grid-row: 3 / 4; aspect-ratio: 4/3; }
+        .lotus-item:nth-child(7) { grid-column: 3 / 7; grid-row: 4 / 6; aspect-ratio: 3/4; }
+        .lotus-item:nth-child(8) { grid-column: 7 / 11; grid-row: 4 / 5; aspect-ratio: 4/3; }
+        .lotus-item:nth-child(9) { grid-column: 7 / 11; grid-row: 5 / 6; aspect-ratio: 4/3; }
+        /* Ảnh 10 trải dài chốt lại */
+        .lotus-item:nth-child(10) { grid-column: 2 / 12; grid-row: 6 / 7; aspect-ratio: 21/9; border-radius: 20px; }
+
+        .lotus-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        /* Lớp phủ & Thông tin (Glassmorphism) */
+        .lotus-overlay {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .lotus-item:hover {
+            box-shadow: 0 20px 40px rgba(255, 181, 167, 0.4); /* Phát sáng hồng cánh sen khi hover */
+            z-index: 10;
+        }
+
+        .lotus-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .lotus-item:hover .lotus-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lotus-overlay h3 {
+            color: var(--lotus-green);
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lotus-overlay p {
+            color: #666;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .lotus-pond { display: flex; flex-direction: column; gap: 1.5rem; }
+            .lotus-item { aspect-ratio: 4/3 !important; border-radius: 16px !important; }
+            .lotus-item:nth-child(10) { aspect-ratio: 16/9 !important; }
+        }
+
+        /* --- Nút Quay Lại --- */
+        .action-area {
+            text-align: center;
+            padding: 0 0 5rem;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--lotus-green);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(27, 67, 50, 0.2);
+            border: 2px solid var(--lotus-green);
+        }
+
+        .btn-back:hover {
+            background-color: var(--text-light);
+            color: var(--lotus-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(27, 67, 50, 0.15);
+        }
+
+        /* --- Khu Vực Bài Viết Khác --- */
+        .related-section {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+        }
+
+        .related-title {
+            text-align: center;
+            color: var(--lotus-green);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .related-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--lotus-pink);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(27, 67, 50, 0.15);
+        }
+
+        .related-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--lotus-green);
+        }
+
+        .related-card-info {
+            padding: 1.5rem;
+        }
+
+        .related-card-info h4 {
+            color: var(--lotus-green);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card-info p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- Lightbox --- */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(27, 67, 50, 0.95); /* Nền xanh thẫm cho lightbox */
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        .lightbox img {
+            max-width: 90%; max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(255, 181, 167, 0.2); /* Sáng hồng nhẹ */
+        }
+        .lightbox-close {
+            position: absolute; top: 25px; right: 35px;
+            color: var(--lotus-pink); font-size: 45px; cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .lightbox-close:hover { transform: rotate(90deg) scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <section class="intro-section">
+        <h1><span>Sen</span> Mùa Hạ</h1>
+        <h2>Kiệt Tác Quà Tặng Độc Quyền</h2>
+        <p>
+            Lấy cảm hứng từ vẻ đẹp thuần khiết và thanh tao của đóa sen vươn mình đón nắng hạ, Vòng Tròn Xanh tự hào giới thiệu bộ sưu tập "Sen Mùa Hạ". Sự đan xen giữa sắc xanh ngọc trong trẻo của lá và nét hồng phớt mong manh của hoa đã tạo nên những thiết kế quà tặng mang đậm tính nghệ thuật. Một món quà không chỉ để trao tay, mà còn gói gém trọn vẹn sự an yên, tĩnh lặng và những thông điệp tri ân sâu sắc nhất.
+        </p>
+    </section>
+
+    <main class="lotus-pond" id="gallery">
+        </main>
+
+    <div class="action-area">
+        <a href="../html/baiviet.html" class="btn-back">← Quay Lại Trang Bài Viết</a>
+    </div>
+
+    <section class="related-section">
+        <h2 class="related-title">Khám Phá Các Dự Án Khác</h2>
+        <div class="related-grid">
+            
+            <a href="thanhma.html" class="related-card">
+                <img src="../images/BaiViet/docterblue/anh (2).jpg" alt="Dự án Thanh Mã" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Thanh Mã Bính Ngọ 2026</h4>
+                    <p>Bộ sưu tập mang biểu tượng của loài ngựa dũng mãnh, kiêu hãnh trên nền xanh trắng thanh tao.</p>
+                </div>
+            </a>
+
+            <a href="vietinbank.html" class="related-card">
+                <img src="../images/BaiViet/vietinbank/anh (11).jpg" alt="Dự án Vietinbank" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Vietinbank - Nét Đẹp Rạng Ngời</h4>
+                    <p>Sự kết hợp tinh tế giữa sắc xanh của niềm tin và ánh vàng kiêu hãnh nhân dịp 8/3.</p>
+                </div>
+            </a>
+
+            <a href="victory.html" class="related-card">
+                <img src="../images/BaiViet/victory/anh (1).jpg" alt="Dự án Victory" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Victory - Tinh Hoa Chiến Thắng</h4>
+                    <p>Sắc vàng vương giả kết hợp cùng sự tỉ mỉ ghi nhận những cột mốc vinh quang.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="close-lightbox">&times;</span>
+        <img src="" alt="Phóng to" id="lightbox-img">
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+    <script>
+        const gallery = document.getElementById('gallery');
+        
+        // Dữ liệu caption thơ mộng cho 10 bức ảnh "Sen Mùa Hạ"
+        const lotusCaptions = [
+            { title: "Vươn Mình", desc: "Đón lấy ánh nắng ban mai rực rỡ." },
+            { title: "Tinh Khôi", desc: "Nét thuần khiết không vướng bụi trần." },
+            { title: "Hương Mùa Hạ", desc: "Lan tỏa sự an yên dịu mát." },
+            { title: "Thanh Tao", desc: "Sang trọng trong từng đường nét." },
+            { title: "Giọt Sương Mai", desc: "Nâng niu những điều mỏng manh nhất." },
+            { title: "Đậm Sâu", desc: "Sự kết hợp hoàn mỹ của sắc màu." },
+            { title: "Tĩnh Lặng", desc: "Mang đến cảm giác thư thái tâm hồn." },
+            { title: "Ngát Hương", desc: "Dấu ấn khó phai qua thời gian." },
+            { title: "Giao Hòa", desc: "Nghệ thuật và thiên nhiên hòa làm một." },
+            { title: "Tuyệt Tác Sen", desc: "Trọn vẹn tâm ý, thay lời tri ân." }
+        ];
+
+        // Tạo 10 thẻ ảnh
+        for (let i = 0; i < 10; i++) {
+            const item = document.createElement('div');
+            item.className = 'lotus-item';
+            const imgSrc = `../images/BaiViet/senmuaha/anh (${i + 1}).jpg`;
+            
+            item.innerHTML = `
+                <img src="${imgSrc}" alt="Sen Mùa Hạ ${i + 1}">
+                <div class="lotus-overlay">
+                    <h3>${lotusCaptions[i].title}</h3>
+                    <p>${lotusCaptions[i].desc}</p>
+                </div>
+            `;
+            
+            item.addEventListener('click', () => openLightbox(imgSrc));
+            gallery.appendChild(item);
+        }
+
+        // --- HIỆU ỨNG HIỂN THỊ KHI CUỘN TRANG ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('show');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        setTimeout(() => {
+            document.querySelectorAll('.lotus-item').forEach(item => observer.observe(item));
+        }, 100);
+
+        // --- XỬ LÝ LIGHTBOX ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

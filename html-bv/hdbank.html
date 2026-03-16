@@ -62,7 +62,7 @@
             width: 90vw;
             max-width: 1200px;
             height: 60vh; /* Chiều cao cố định trên máy tính */
-            margin: 0 auto 5rem auto; /* Căn giữa dải ảnh */
+            margin: 0 auto 3rem auto; /* Căn giữa dải ảnh */
             gap: 15px;
         }
 
@@ -144,6 +144,100 @@
                 left: 20px;
             }
         }
+
+        /* --- Nút Quay Lại --- */
+        .action-area {
+            text-align: center;
+            padding: 1rem 0 4rem;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary-gold);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.3);
+        }
+
+        /* --- Khu Vực Bài Viết Khác --- */
+        .related-section {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+        }
+
+        .related-title {
+            text-align: center;
+            color: var(--primary-gold);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .related-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .related-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .related-card-info {
+            padding: 1.5rem;
+        }
+
+        .related-card-info h4 {
+            color: var(--primary-gold);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card-info p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
@@ -182,6 +276,41 @@
         </div>
     </main>
 
+    <div class="action-area">
+        <a href="../html/baiviet.html" class="btn-back">← Quay Lại Trang Bài Viết</a>
+    </div>
+
+    <section class="related-section">
+        <h2 class="related-title">Khám Phá Các Dự Án Khác</h2>
+        <div class="related-grid">
+            
+            <a href="artermit.html" class="related-card">
+                <img src="../images/BaiViet/artermit/anh (13).jpg" alt="Dự án Artermit" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Artermit - Quà Tặng Độc Bản</h4>
+                    <p>Nghệ thuật trao gửi thành ý thông qua sự kết hợp tinh tế giữa lụa là và hương thơm.</p>
+                </div>
+            </a>
+
+            <a href="sunproperty.html" class="related-card">
+                <img src="../images/BaiViet/sunproperty/anh (1).jpg" alt="Dự án Sun Property" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Sun Property - Ánh Dương Tỏa Sáng</h4>
+                    <p>Bản giao hưởng ngọt ngào của nghệ thuật và lòng trân trọng gửi đến phái đẹp nhân ngày 8/3.</p>
+                </div>
+            </a>
+
+            <a href="lequydon.html" class="related-card">
+                <img src="../images/BaiViet/lequydon/anh (1).jpg" alt="Dự án Lê Quý Đôn" class="related-card-img">
+                <div class="related-card-info">
+                    <h4>Lê Quý Đôn - Kỷ Niệm 20 Năm</h4>
+                    <p>Hành trình dựng xây ngàn hoa, tri ân 20 năm ươm mầm tri thức và cống hiến.</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+    
     <div id="footer-container"></div>
 
     <script src="../js/global.js"></script>
