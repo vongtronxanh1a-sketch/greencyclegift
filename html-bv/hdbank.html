@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDBank | Tri Ân Phái Đẹp 8/3</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --primary-gold: #D4AF37; /* Vàng ánh kim sang trọng */
+            --accent-gold: #F39C12; /* Vàng cam làm điểm nhấn */
+            --bg-light: #FFFCF5; /* Nền trắng kem ấm áp */
+            --text-dark: #333333;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            /* Bỏ display: flex ở body để Header/Footer dàn trang bình thường */
+            overflow-x: hidden;
+        }
+
+        /* Phần giới thiệu */
+        .intro-section {
+            text-align: center;
+            padding: 4rem 1.5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto; /* Căn giữa nội dung */
+        }
+
+        .intro-section h1 {
+            color: var(--primary-gold);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #555;
+            font-style: italic;
+            line-height: 1.8;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        /* Container chứa các thẻ ảnh */
+        .gallery-container {
+            display: flex;
+            width: 90vw;
+            max-width: 1200px;
+            height: 60vh; /* Chiều cao cố định trên máy tính */
+            margin: 0 auto 5rem auto; /* Căn giữa dải ảnh */
+            gap: 15px;
+        }
+
+        /* Từng thẻ ảnh riêng biệt */
+        .panel {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            border-radius: 40px;
+            color: var(--text-light);
+            cursor: pointer;
+            flex: 0.5; /* Kích thước khi thu nhỏ */
+            position: relative;
+            transition: flex 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Lớp phủ mờ màu vàng ánh kim để chữ nổi bật hơn */
+        .panel::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(184, 134, 11, 0.85));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .panel.active {
+            flex: 5; /* Kích thước khi phóng to */
+            cursor: default;
+        }
+
+        .panel.active::after {
+            opacity: 1;
+        }
+
+        /* Chữ hiển thị bên trong thẻ ảnh */
+        .panel h3 {
+            font-size: 1.5rem;
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            margin: 0;
+            opacity: 0;
+            z-index: 10;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease-in 0.4s, transform 0.3s ease-in 0.4s;
+            white-space: nowrap;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .panel.active h3 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .gallery-container {
+                flex-direction: column;
+                height: 80vh;
+                width: 90vw;
+            }
+            
+            .panel {
+                border-radius: 20px;
+            }
+
+            .panel h3 {
+                font-size: 1.2rem;
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <section class="intro-section">
+        <h1>Tri Ân Phái Đẹp 8/3</h1>
+        <p>
+            Nhân dịp Quốc tế Phụ nữ 8/3, HDBank trao gửi những món quà đong đầy trân trọng tới nửa kia tuyệt vời của đại gia đình. Mang sắc vàng rực rỡ biểu tượng cho sự ấm áp và rạng rỡ, mỗi set quà đều được Vòng Tròn Xanh cẩn trọng nâng niu chuẩn bị trong từng chi tiết. Đây không chỉ là món quà hiện vật, mà còn là lời tri ân sâu sắc gửi đến những bóng hồng đã luôn đồng hành, cống hiến và tỏa sáng.
+        </p>
+    </section>
+
+    <main class="gallery-container">
+        <div class="panel active" style="background-image: url('../images/BaiViet/hdbank/anh (1).jpg');">
+            <h3>Sắc Vàng Tỏa Sáng</h3>
+        </div>
+        
+        <div class="panel" style="background-image: url('../images/BaiViet/hdbank/anh (2).jpg');">
+            <h3>Nâng Niu Cảm Xúc</h3>
+        </div>
+        
+        <div class="panel" style="background-image: url('../images/BaiViet/hdbank/anh (3).jpg');">
+            <h3>Tinh Tế Từng Chi Tiết</h3>
+        </div>
+        
+        <div class="panel" style="background-image: url('../images/BaiViet/hdbank/anh (4).jpg');">
+            <h3>Món Quà Trân Trọng</h3>
+        </div>
+        
+        <div class="panel" style="background-image: url('../images/BaiViet/hdbank/anh (5).jpg');">
+            <h3>Gắn Kết Yêu Thương</h3>
+        </div>
+
+        <div class="panel" style="background-image: url('../images/BaiViet/hdbank/anh (6).jpg');">
+            <h3>Tri Ân Nửa Thế Giới</h3>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+    <script>
+        const panels = document.querySelectorAll('.panel');
+
+        panels.forEach(panel => {
+            panel.addEventListener('click', () => {
+                removeActiveClasses();
+                panel.classList.add('active');
+            });
+        });
+
+        function removeActiveClasses() {
+            panels.forEach(panel => {
+                panel.classList.remove('active');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artermit | Bộ Sưu Tập Quà Tặng Doanh Nghiệp Cao Cấp</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --primary-red: #8B0000; /* Đỏ đô sang trọng */
+            --accent-red: #D2143A; /* Đỏ tươi làm điểm nhấn */
+            --bg-light: #FDF9F9; /* Nền trắng phớt hồng nhạt */
+            --text-dark: #333333;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fff9fa; /* Nền đỏ ấm áp */
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header / Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--accent-red) 100%);
+            color: var(--text-light);
+            text-align: center;
+            padding: 4rem 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Introduction */
+        .intro-section {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Gallery Grid */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 5%;
+            margin-bottom: 4rem;
+        }
+
+        /* Image Cards & Effects */
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            aspect-ratio: 1 / 1;
+        }
+
+        /* Class để JS kích hoạt hiệu ứng xuất hiện (Fade-in) */
+        .gallery-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(139, 0, 0, 0.8));
+            color: var(--text-light);
+            padding: 1.5rem 1rem 1rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            text-align: center;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        /* Image 13 - Hiển thị đặc biệt ở cuối */
+        .gallery-item:nth-child(13) {
+            grid-column: 1 / -1; /* Trải dài toàn bộ chiều ngang */
+            aspect-ratio: 21 / 9; /* Khung hình rộng */
+        }
+
+        /* Lightbox (Modal hiển thị ảnh phóng to) */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent-red);
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .gallery-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            .gallery-item:nth-child(13) {
+                aspect-ratio: 16 / 9;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <section class="intro-section">
+        <p style="border: 2px solid #ff4e71; padding: 1rem; background-color: #ffffff; border-radius: 8px;">
+            Chào đón năm mới, bộ quà tặng Artermit là dấu ấn tri ân tinh tế dành riêng cho đội ngũ nhân sự, được Vòng Tròn Xanh nâng niu và cẩn trọng chuẩn bị trong từng chi tiết. Sự kết hợp hài hòa giữa nét mềm mại của khăn lụa cao cấp cùng hương thơm thư thái từ nến thơm chính là lời cảm ơn chân thành nhất, gửi gắm trọn vẹn tâm ý tới những người cộng sự đã cùng đồng hành.
+        </p>
+    </section>
+    <main class="gallery-container" id="gallery">
+        </main>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="close-lightbox">&times;</span>
+        <img src="" alt="Phóng to" id="lightbox-img">
+    </div>
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+    <script>
+        // Mảng chứa link 13 hình ảnh (Hiện tại dùng ảnh mẫu có tone đỏ/ấm, bạn có thể thay bằng link ảnh sản phẩm thật)
+        const images = [
+            "../images/BaiViet/artermit/anh (1).jpg", // Hộp quà
+            "../images/BaiViet/artermit/anh (2).jpg", // Ruy băng đỏ
+            "../images/BaiViet/artermit/anh (3).jpg", // Nến thơm
+            "../images/BaiViet/artermit/anh (4).jpg", // Khăn lụa
+            "../images/BaiViet/artermit/anh (5).jpg", // Gói quà đỏ
+            "../images/BaiViet/artermit/anh (6).jpg", // Nến thư giãn
+            "../images/BaiViet/artermit/anh (7).jpg", // Vải lụa đỏ
+            "../images/BaiViet/artermit/anh (8).jpg", // Giỏ quà
+            "../images/BaiViet/artermit/anh (9).jpg", // Sáp nến
+            "../images/BaiViet/artermit/anh (10).jpg", // Tinh tế
+            "../images/BaiViet/artermit/anh (11).jpg", // Nghệ thuật gói
+            "../images/BaiViet/artermit/anh (12).jpg", // Nến và hoa
+            "../images/BaiViet/artermit/anh (13).jpg"  // Ảnh 13 toàn cảnh set quà (ảnh rộng)
+        ];
+
+        const galleryContainer = document.getElementById('gallery');
+
+        // Tạo 13 phần tử ảnh
+        images.forEach((src, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            
+            item.innerHTML = `
+                <img src="${src}" alt="Set quà Artermit ${index + 1}">
+                <div class="overlay">Hình ảnh ${index + 1}</div>
+            `;
+            
+            // Sự kiện mở Lightbox
+            item.addEventListener('click', () => openLightbox(src));
+            galleryContainer.appendChild(item);
+        });
+
+        // --- HIỆU ỨNG HIỂN THỊ KHI CUỘN TRANG (Scroll Fade-in) ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target); // Chạy hiệu ứng 1 lần
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // --- HIỆU ỨNG LIGHTBOX (Phóng to ảnh) ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lê Quý Đôn 20 Năm | Dựng Xây Ngàn Hoa</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --primary-green: #145A32; /* Xanh lá thẫm sang trọng */
+            --accent-gold: #D4AF37; /* Vàng ánh kim kỷ niệm 20 năm */
+            --bg-light: #F4F9F4; /* Nền xanh phớt nhẹ nhàng */
+            --text-dark: #1E3B20;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Hero / Intro Section */
+        .intro-section {
+            text-align: center;
+            padding: 5rem 1.5rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-section h1 {
+            color: var(--primary-green);
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .intro-section h2 {
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: #445946;
+            font-style: italic;
+            line-height: 1.8;
+            border-left: 3px solid var(--accent-gold);
+            border-right: 3px solid var(--accent-gold);
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, rgba(212, 175, 55, 0.05), transparent, rgba(212, 175, 55, 0.05));
+            border-radius: 8px;
+        }
+
+        /* Mosaic Grid Gallery */
+        .masonry-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 cột trên máy tính */
+            grid-auto-rows: 250px; /* Chiều cao cơ bản của 1 ô */
+            grid-auto-flow: dense; /* Tự động lấp đầy khoảng trống */
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto 5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Image Item styling */
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(20, 90, 50, 0.1);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .gallery-item.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Các class tạo hiệu ứng gạch đan xen (Mosaic) */
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        /* Lớp phủ (Overlay) */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(20, 90, 50, 0.85) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay span {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transform: translateY(15px);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .overlay span {
+            transform: translateY(0);
+        }
+
+        /* Responsive cho Tablet */
+        @media (max-width: 992px) {
+            .masonry-gallery {
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 200px;
+            }
+        }
+
+        /* Responsive cho Điện thoại */
+        @media (max-width: 600px) {
+            .intro-section h1 {
+                font-size: 2rem;
+            }
+            .intro-section p {
+                padding: 1rem;
+            }
+            .masonry-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 160px;
+                gap: 10px;
+            }
+            .gallery-item.large {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            .gallery-item.wide {
+                grid-column: span 2;
+            }
+            .gallery-item.tall {
+                grid-column: span 1; /* Chiều cao giữ nguyên, thu hẹp chiều rộng */
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 30, 15, 0.95); /* Đổi màu nền tối sang ám xanh */
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        .lightbox img {
+            max-width: 90%; max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+        .lightbox-close {
+            position: absolute; top: 25px; right: 35px;
+            color: white; font-size: 45px; cursor: pointer;
+            transition: color 0.3s;
+        }
+        .lightbox-close:hover { color: var(--accent-gold); }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <section class="intro-section">
+        <h1>Dựng Xây Ngàn Hoa</h1>
+        <h2>Lê Quý Đôn - Kỷ Niệm 20 Năm</h2>
+        <p>
+            Trải qua hai thập kỷ ươm mầm tri thức, hành trình 20 năm của Lê Quý Đôn là một bản hòa ca rực rỡ của thanh xuân và sự cống hiến. Để đánh dấu cột mốc tự hào này, Vòng Tròn Xanh vinh dự chế tác bộ sưu tập quà tặng độc bản. Mỗi set quà tựa như một đóa hoa ngát hương, đong đầy tâm huyết, thay lời tri ân sâu sắc gửi đến những thế hệ đã cùng nhau vun đắp nên một Lê Quý Đôn vững bước và phồn vinh.
+        </p>
+    </section>
+
+    <main class="masonry-gallery" id="gallery">
+        </main>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="close-lightbox">&times;</span>
+        <img src="" alt="Phóng to" id="lightbox-img">
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+    <script>
+        // Tạo mảng 21 hình ảnh
+        const images = [];
+        for (let i = 1; i <= 21; i++) {
+            images.push(`../images/BaiViet/lequydon/anh (${i}).jpg`);
+        }
+
+        const galleryContainer = document.getElementById('gallery');
+
+        // Phân phối kiểu dáng ngẫu nhiên (hoặc có chủ đích) để tạo lưới Mosaic đẹp mắt
+        // 'large' (to bự), 'wide' (rộng ngang), 'tall' (cao dọc), '' (vuông nhỏ)
+        const layoutPattern = [
+            'large', '', 'tall', '', 'wide', 
+            '', 'tall', '', 'large', '', 
+            'wide', '', '', 'tall', 'wide', 
+            'large', '', 'tall', '', '', 'wide'
+        ];
+
+        const captions = [
+            "Khởi nguồn tri thức", "Nét đẹp truyền thống", "Dấu ấn thời gian", 
+            "20 năm tự hào", "Tri ân sâu sắc", "Vun đắp tương lai",
+            "Sức trẻ Lê Quý Đôn", "Ngàn hoa khoe sắc", "Tâm huyết người lái đò",
+            "Vòng Tròn Xanh đồng hành", "Chỉn chu từng đường nét", "Gắn kết yêu thương",
+            "Kỷ vật vô giá", "Sang trọng & Tinh tế", "Gửi trọn niềm tin",
+            "Kiến tạo giá trị", "Hoa thơm trái ngọt", "Bước ngoặt rực rỡ",
+            "Món quà thanh lịch", "Hành trình vươn xa", "Lan tỏa tự hào"
+        ];
+
+        // Render 21 thẻ ảnh
+        images.forEach((src, index) => {
+            const item = document.createElement('div');
+            // Cấp class theo pattern để xếp lưới
+            item.className = `gallery-item ${layoutPattern[index]}`; 
+            
+            item.innerHTML = `
+                <img src="${src}" alt="Quà tặng Lê Quý Đôn - Ảnh ${index + 1}">
+                <div class="overlay">
+                    <span>${captions[index]}</span>
+                </div>
+            `;
+            
+            item.addEventListener('click', () => openLightbox(src));
+            galleryContainer.appendChild(item);
+        });
+
+        // --- HIỆU ỨNG CUỘN TRANG (Scroll Reveal) ---
+        // Khi người dùng cuộn tới đâu, "hoa" sẽ nở (hiện ảnh) tới đó
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Thêm độ trễ nhẹ giữa các ảnh xuất hiện cùng lúc tạo cảm giác gợn sóng
+                    setTimeout(() => {
+                        entry.target.classList.add('show');
+                    }, index * 50); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        setTimeout(() => {
+            document.querySelectorAll('.gallery-item').forEach(item => observer.observe(item));
+        }, 100);
+
+        // --- XỬ LÝ LIGHTBOX ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) closeLightbox();
+        });
+    </script>
+</body>
+</html>

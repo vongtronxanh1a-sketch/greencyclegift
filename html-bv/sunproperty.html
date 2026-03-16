@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun Property | Ánh Dương Tỏa Sáng - Tri Ân 8/3</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --primary-green: #0D4722; 
+            --light-green: #E8F1EA; 
+            --sun-gold: #E5A93C; 
+            --text-dark: #1A2B20;
+            --text-light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-green);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        .intro-section {
+            text-align: center;
+            padding: 5rem 1.5rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-section h1 {
+            color: var(--primary-green);
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro-section h2 {
+            color: var(--sun-gold);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: #334D3D;
+            line-height: 1.9;
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(13, 71, 34, 0.08);
+            border-top: 4px solid var(--sun-gold);
+        }
+
+        .horizontal-wrapper {
+            width: 100%;
+            padding: 2rem 0 5rem;
+            position: relative;
+        }
+
+        .horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            padding: 0 10vw;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+            /* Thêm scroll-behavior để trượt mượt mà hơn */
+            scroll-behavior: smooth;
+        }
+
+        .horizontal-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            flex: 0 0 75vw; 
+            height: 60vh;
+            min-height: 400px;
+            scroll-snap-align: center;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            cursor: grab;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .card:active {
+            cursor: grabbing;
+        }
+
+        .horizontal-scroll:hover .card:not(:hover) {
+            filter: grayscale(30%) opacity(0.7);
+            transform: scale(0.95);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; 
+            transition: transform 0.8s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem 2rem 1.5rem;
+            background: linear-gradient(to top, rgba(13, 71, 34, 0.95), transparent);
+            color: var(--text-light);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .card:hover .card-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--sun-gold);
+        }
+
+        .card-content p {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                flex: 0 0 35vw; 
+                height: 65vh;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .card {
+                flex: 0 0 25vw; 
+            }
+        }
+        
+        .scroll-hint {
+            text-align: center;
+            color: var(--primary-green);
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <section class="intro-section">
+        <h1>Ánh Dương Tỏa Sáng</h1>
+        <h2>Sun Property | Tri Ân Phái Đẹp 8/3</h2>
+        <p>
+            Lấy cảm hứng từ vẻ đẹp rực rỡ và sức sống bền bỉ của thiên nhiên, bộ sưu tập quà tặng 8/3 dành riêng cho phái đẹp Sun Property là một bản giao hưởng ngọt ngào của nghệ thuật và lòng trân trọng. Được Vòng Tròn Xanh cẩn trọng chuẩn bị trong sắc xanh mướt mát, mỗi set quà tựa như một tia nắng ấm áp, thay cho lời chúc an yên và lời tri ân sâu sắc nhất gửi đến những "bông hoa" đang ngày đêm kiến tạo nên những giá trị vượt thời gian.
+        </p>
+    </section>
+
+    <div class="scroll-hint">
+        <span>← Tự động lướt hoặc Vuốt sang ngang để chiêm ngưỡng →</span>
+    </div>
+
+    <main class="horizontal-wrapper">
+        <div class="horizontal-scroll" id="scroll-container">
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (1).jpg" alt="Quà tặng Sun Property 1"><div class="card-content"><h3>Khởi Nguồn Rạng Rỡ</h3><p>Sự bắt đầu đầy năng lượng cho một ngày mới.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (2).jpg" alt="Quà tặng Sun Property 2"><div class="card-content"><h3>Nét Cầm Tinh Tế</h3><p>Chăm chút tỉ mỉ trong từng đường nét thiết kế.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (3).jpg" alt="Quà tặng Sun Property 3"><div class="card-content"><h3>Hương Thơm Thư Thái</h3><p>Nến thơm an lành, xoa dịu mọi giác quan.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (4).jpg" alt="Quà tặng Sun Property 4"><div class="card-content"><h3>Lụa Là Kiêu Sa</h3><p>Mềm mại, thướt tha tôn vinh khí chất phái đẹp.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (5).jpg" alt="Quà tặng Sun Property 5"><div class="card-content"><h3>Gắn Kết Trân Trọng</h3><p>Món quà chuyên chở vạn lời cảm ơn sâu sắc.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (6).jpg" alt="Quà tặng Sun Property 6"><div class="card-content"><h3>Dấu Ấn Thời Gian</h3><p>Lưu giữ những khoảnh khắc đồng hành quý giá.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (7).jpg" alt="Quà tặng Sun Property 7"><div class="card-content"><h3>Vẻ Đẹp Vượt Trội</h3><p>Đẳng cấp khác biệt đến từ những điều nhỏ nhất.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (8).jpg" alt="Quà tặng Sun Property 8"><div class="card-content"><h3>Sức Sống Xanh</h3><p>Cảm hứng bất tận từ thiên nhiên hiền hòa.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (9).jpg" alt="Quà tặng Sun Property 9"><div class="card-content"><h3>Ánh Dương Tỏa Nhẹ</h3><p>Lan tỏa hơi ấm và niềm vui đến mọi không gian.</p></div></div>
+            <div class="card"><img src="../images/BaiViet/sunproperty/anh (10).jpg" alt="Quà tặng Sun Property 10"><div class="card-content"><h3>Trọn Vẹn Tâm Ý</h3><p>Đóng gói hoàn hảo, sẵn sàng trao gửi yêu thương.</p></div></div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/global.js"></script>
+    <script>
+        const slider = document.getElementById('scroll-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let autoPlayTimer;
+
+        // --- CHỨC NĂNG KÉO THẢ TRƯỢT (DRAG TO SCROLL) ---
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            slider.style.scrollSnapType = 'none'; 
+            slider.style.scrollBehavior = 'auto'; // Tắt smooth khi đang kéo tay
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            stopAutoPlay();
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            if (isDown) {
+                isDown = false;
+                resetSliderState();
+            }
+            startAutoPlay(); // Tiếp tục chạy khi đưa chuột ra ngoài
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            resetSliderState();
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; 
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        function resetSliderState() {
+            slider.style.cursor = 'grab';
+            slider.style.scrollSnapType = 'x mandatory';
+            slider.style.scrollBehavior = 'smooth'; // Bật lại smooth
+        }
+
+        // --- CHỨC NĂNG TỰ ĐỘNG CHUYỂN ẢNH (AUTO-PLAY) ---
+        function startAutoPlay() {
+            stopAutoPlay(); // Đảm bảo không bị trùng lặp bộ đếm
+            autoPlayTimer = setInterval(() => {
+                // Tính toán chiều rộng của một thẻ ảnh cộng với khoảng cách (gap)
+                const cardWidth = slider.querySelector('.card').offsetWidth;
+                // Lấy gap từ computed style (hiện tại là 2rem ~ 32px)
+                const gap = parseInt(window.getComputedStyle(slider).gap) || 32; 
+                
+                const scrollAmount = cardWidth + gap;
+
+                // Nếu đã cuộn đến kịch kim bên phải, tự động lướt mượt mà về đầu
+                if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+                    slider.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    // Nếu chưa đến cuối, cuộn sang ảnh tiếp theo
+                    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 3000); // Tốc độ 3000ms (3 giây) sẽ đổi 1 ảnh
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayTimer);
+        }
+
+        // Tạm dừng tự động cuộn khi người dùng rê chuột vào hoặc thao tác trên điện thoại
+        slider.addEventListener('mouseenter', stopAutoPlay);
+        slider.addEventListener('touchstart', stopAutoPlay);
+        slider.addEventListener('touchend', startAutoPlay);
+
+        // Hỗ trợ cuộn ngang bằng con lăn chuột (Mouse wheel)
+        slider.addEventListener('wheel', (evt) => {
+            evt.preventDefault();
+            stopAutoPlay(); // Tạm dừng khi đang lăn chuột
+            slider.scrollLeft += evt.deltaY;
+            
+            // Khởi động lại auto-play sau 1.5s không lăn chuột
+            clearTimeout(window.wheelTimeout);
+            window.wheelTimeout = setTimeout(startAutoPlay, 1500);
+        });
+
+        // Bắt đầu chạy hiệu ứng khi load trang
+        startAutoPlay();
+    </script>
+</body>
+</html>
