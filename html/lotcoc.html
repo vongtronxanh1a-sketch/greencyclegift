@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ Sưu Tập Lót Cốc | Vòng Tròn Xanh</title>
+    <link rel="stylesheet" href="../css/setquatang.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #1b5e20;
+            --accent-gold: #c5a059;
+            --bg-light: #f4f7f4;
+            --text-dark: #2c3e50;
+            --font-main: 'Be Vietnam Pro', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #ffffff;
+            text-align: center;
+            padding: 4rem 1rem;
+            border-bottom: 3px solid var(--primary-green);
+        }
+
+        header h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin: 0;
+        }
+
+        header p {
+            font-style: italic;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .gallery-container {
+            max-width: 1300px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Lưới hiển thị 31 hình ảnh */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #e0e0e0;
+            aspect-ratio: 1 / 1; /* Giữ ảnh dạng vuông đồng nhất */
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+
+        /* Hiệu ứng mờ đi một chút khi đưa chuột vào */
+        .gallery-item:hover img {
+            filter: brightness(0.85);
+        }
+
+        /* --- LIGHTBOX (Cửa sổ hiện ảnh rõ) --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            border: 3px solid var(--accent-gold);
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.3);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .close-lightbox:hover {
+            color: var(--accent-gold);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 30px;
+            color: var(--accent-gold);
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+        }
+
+        /* Responsive cho điện thoại và máy tính bảng */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px;}
+        }
+        
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.8rem; }
+            header p { font-size: 1rem; }
+            /* Nếu muốn ảnh to hơn trên điện thoại nhỏ, đổi thành 1 cột: grid-template-columns: 1fr; */
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+    <header>
+        <h1>Nghệ Thuật Lót Cốc Tinh Tế</h1>
+        <p>Điểm nhấn thanh lịch cho không gian thưởng trà</p>
+    </header>
+
+    <div class="gallery-container">
+        <div class="gallery-grid" id="gallery">
+            </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+        <img src="" id="lightbox-img" onclick="event.stopPropagation();">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+    <div id="footer-container"></div>
+    <script src="../js/global.js"></script>
+    <script>
+        const gallery = document.getElementById('gallery');
+        
+        // Vòng lặp tạo ra đúng 31 sản phẩm Lót Cốc
+        for (let i = 1; i <= 31; i++) {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            
+            // Đổi đường dẫn thư mục thành LotCoc theo chuẩn của bạn
+            // Giả định bạn lưu ảnh tên là: anh (1).jpg, anh (2).jpg ...
+            const imgSrc = `../images/DanhSachSanPham/LotCoc/anh (${i}).jpg`;
+            const fullSrc = `../images/DanhSachSanPham/LotCoc/anh (${i}).jpg`;
+            
+            // Nếu bạn chưa có ảnh thật, bạn có thể tạm dùng link ảnh giả lập (placeholder) dưới đây để xem bố cục trước bằng cách bỏ comment dòng dưới và comment 2 dòng trên:
+            // const imgSrc = `https://via.placeholder.com/400x400/e8f5e9/1b5e20?text=Lot+Coc+${i}`;
+            // const fullSrc = `https://via.placeholder.com/1000x800/e8f5e9/1b5e20?text=Lot+Coc+${i}`;
+            
+            item.innerHTML = `<img src="${imgSrc}" alt="Lót cốc ${i}" loading="lazy">`;
+            item.onclick = () => openLightbox(fullSrc, `Mẫu Lót Cốc Số ${i}`);
+            gallery.appendChild(item);
+        }
+
+        // Chức năng Lightbox
+        function openLightbox(src, caption) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            const lbCap = document.getElementById('lightbox-caption');
+            
+            lbImg.src = src;
+            lbCap.innerText = caption;
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Khóa cuộn trang khi xem ảnh
+        }
+
+        function closeLightbox(event) {
+            // Ngăn không cho đóng nếu click vào chính bức ảnh
+            if (event && event.target.id === 'lightbox-img') return;
+            
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Mở lại cuộn trang
+        }
+    </script>
+
+</body>
+</html>
